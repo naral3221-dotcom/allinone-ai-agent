@@ -1,15 +1,15 @@
 # Implementation Roadmap
 
 > **마지막 수정**: 2026-02-23
-> **현재 단계**: Sprint 0 - Project Setup
+> **현재 단계**: Sprint 1 - MVP Chat Interface
 
 ---
 
 ## Overall Timeline
 
 ```
-Sprint 0: Project Setup ─────────────────────── <-- CURRENT
-Sprint 1: MVP Chat Interface ────────────────── Next
+Sprint 0: Project Setup ─────────────────────── ✅ DONE
+Sprint 1: MVP Chat Interface ────────────────── <-- CURRENT
 Sprint 2: Agent System ──────────────────────── Planned
 Sprint 3: Knowledge & RAG ──────────────────── Planned
 Sprint 4: Content & Automation ─────────────── Planned
@@ -18,7 +18,7 @@ Sprint 5: Poemora Integration ──────────────── P
 
 ---
 
-## Sprint 0: Project Setup <-- CURRENT
+## Sprint 0: Project Setup ✅ DONE
 
 ### 목표
 프로젝트 기반 환경 구축 — Next.js, Clean Architecture, DB, Auth, 테스트, CI/CD
@@ -27,12 +27,16 @@ Sprint 5: Poemora Integration ──────────────── P
 
 | # | Task | Status | Agent | Commit |
 |---|------|--------|-------|--------|
-| 0.1 | Next.js 15 프로젝트 초기화 (App Router, TS strict) | ⬜ Todo | implementer | |
-| 0.2 | Clean Architecture 폴더 구조 생성 | ⬜ Todo | architect | |
-| 0.3 | Prisma + PostgreSQL 설정 (pgvector 포함) | ⬜ Todo | db-designer | |
-| 0.4 | Clerk 인증 설정 (로그인/회원가입) | ⬜ Todo | implementer | |
-| 0.5 | Vitest + 기본 테스트 환경 구성 | ⬜ Todo | test-writer | |
-| 0.6 | CI/CD 파이프라인 (GitHub Actions) | ⬜ Todo | implementer | |
+| 0.1 | Next.js 16 프로젝트 초기화 (App Router, TS strict) | ✅ Done | implementer | 92bc678 |
+| 0.2 | Clean Architecture 폴더 구조 생성 | ✅ Done | architect | 92bc678 |
+| 0.3 | Prisma + PostgreSQL 설정 (pgvector 포함) | ✅ Done | db-designer | 92bc678 |
+| 0.4 | Clerk 인증 설정 (로그인/회원가입) | ✅ Done | implementer | |
+| 0.5 | Vitest + 기본 테스트 환경 구성 | ✅ Done | test-writer | |
+| 0.6 | CI/CD 파이프라인 (GitHub Actions) | ✅ Done | implementer | |
+| 0.7 | Vercel AI SDK 멀티 프로바이더 설정 | ✅ Done | ai-integrator | |
+| 0.8 | Upstash Redis 캐시 레이어 | ✅ Done | implementer | |
+| 0.9 | shadcn/ui + 레이아웃 쉘 | ✅ Done | implementer | |
+| 0.10 | 기본 채팅 프로토타입 | ✅ Done | implementer | |
 
 ### Deliverables
 - [ ] Next.js 앱 실행 가능
