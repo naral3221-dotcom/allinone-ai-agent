@@ -6,8 +6,8 @@
 
 ## Last Updated
 - **날짜**: 2026-02-23
-- **작업 상태**: Sprint 6 - Workspace UI & React Hooks 완료
-- **현재 작업**: 전체 Sprint 0~6 완료
+- **작업 상태**: Sprint 7 - Dashboard, Workflows & Polish 완료
+- **현재 작업**: 전체 Sprint 0~7 완료
 
 ---
 
@@ -19,41 +19,42 @@
 ### Sprint 3: Knowledge & RAG — ✅ 완료
 ### Sprint 4: Content & Automation — ✅ 완료
 ### Sprint 5: Poemora Integration — ✅ 완료
-
 ### Sprint 6: Workspace UI & React Hooks — ✅ 완료
-1. ✅ UserSettings Service + Settings API (GET/PUT)
-2. ✅ Custom React Hooks (useConversations, useKnowledge, useDocuments, useSettings, useWorkflow)
-3. ✅ Settings Page (모델 선택, 테마, API 키 관리)
-4. ✅ Knowledge Base Page (목록/생성/삭제, 엔트리, 검색)
-5. ✅ Documents Page (목록/생성, 에디터 + AI Assist 6 액션)
-6. ✅ Research Page (딥 리서치 폼, 결과, 스텝 타임라인)
+
+### Sprint 7: Dashboard, Workflows & Polish — ✅ 완료
+1. ✅ Workflow Management Page (목록/생성/상세/실행)
+2. ✅ Marketing Dashboard (KPI 카드 + Recharts 차트 + 인사이트)
+3. ✅ Sidebar Navigation 업데이트 (Workflows + Marketing)
+4. ✅ Root Landing Page (auth 분기)
+5. ✅ Global Error/Loading/NotFound 페이지
+6. ✅ E2E 테스트 기반 (Playwright + 9 스모크 테스트)
 
 ---
 
 ## State
 ```
-Sprint 6 완료
-- 87 test files, 599 tests 모두 통과
+Sprint 7 완료
+- 100 unit test files, 653 tests 모두 통과
+- 9 E2E tests (Playwright)
+- 7개 워크스페이스 페이지: chat, research, documents, knowledge, settings, workflows, marketing
 - 6개 에이전트: orchestrator, research, code, content, data, marketing
-- 5개 워크스페이스 페이지: chat, research, documents, knowledge, settings
-- 5개 React 훅: useConversations, useKnowledge, useDocuments, useSettings, useWorkflow
+- 글로벌 에러/로딩/404 처리
+- 랜딩 페이지 + 사이드바 네비게이션 완성
 ```
 
 ---
 
-## Key Files (Sprint 6 추가)
+## Key Files (Sprint 7 추가)
 ```
-src/lib/db/settings.service.ts              — UserSettings 서비스
-src/app/api/settings/route.ts               — Settings API
-src/hooks/                                  — 5개 React 훅 + barrel export
-src/components/settings/                    — Settings 컴포넌트
-src/components/knowledge/                   — Knowledge Base 컴포넌트
-src/components/documents/                   — Documents 컴포넌트
-src/components/research/                    — Research 컴포넌트
-src/app/(workspace)/settings/page.tsx       — Settings 페이지
-src/app/(workspace)/knowledge/              — Knowledge Base 페이지 (목록 + 상세)
-src/app/(workspace)/documents/              — Documents 페이지 (목록 + 에디터)
-src/app/(workspace)/research/page.tsx       — Research 페이지
+src/components/workflows/                   — Workflow UI 컴포넌트
+src/app/(workspace)/workflows/              — Workflow 페이지
+src/components/marketing/                   — Marketing Dashboard 컴포넌트
+src/app/(workspace)/marketing/page.tsx      — Marketing Dashboard 페이지
+src/components/ui/spinner.tsx               — Spinner 컴포넌트
+src/app/error.tsx, loading.tsx, not-found.tsx — 글로벌 상태 페이지
+src/app/page.tsx                            — 랜딩 페이지 (auth 분기)
+playwright.config.ts                        — Playwright 설정
+e2e/                                        — E2E 테스트
 ```
 
 ---
