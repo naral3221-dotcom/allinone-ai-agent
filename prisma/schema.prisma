@@ -1,0 +1,126 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+model User {
+  id             String          @id @default(cuid())
+  clerkId        String          @unique
+  email          String          @unique
+  name           String?
+  conversations  Conversation[]
+  documents      Document[]
+  knowledgeBases KnowledgeBase[]
+  settings       UserSettings?
+  usageLogs      UsageLog[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  title     String?
+  messages  Message[]
+  tags      String[]
+  pinned    Boolean   @default(false)
+  archived  Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId, updatedAt])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           MessageRole
+  content        String
+  model          String?
+  toolCalls      Json?
+  toolResults    Json?
+  metadata       Json?
+  createdAt      DateTime     @default(now())
+
+  @@index([conversationId, createdAt])
+}
+
+enum MessageRole {
+  user
+  assistant
+  system
+  tool
+}
+
+model Document {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  content   Json
+  type      String
+  tags      String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model KnowledgeBase {
+  id          String           @id @default(cuid())
+  userId      String
+  user        User             @relation(fields: [userId], references: [id])
+  name        String
+  description String?
+  entries     KnowledgeEntry[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model KnowledgeEntry {
+  id              String                      @id @default(cuid())
+  knowledgeBaseId String
+  knowledgeBase   KnowledgeBase               @relation(fields: [knowledgeBaseId], references: [id], onDelete: Cascade)
+  title           String
+  content         String
+  sourceType      String
+  sourceUrl       String?
+  embedding       Unsupported("vector(1536)")?
+  metadata        Json?
+  createdAt       DateTime                    @default(now())
+
+  @@index([knowledgeBaseId])
+}
+
+model UserSettings {
+  id               String @id @default(cuid())
+  userId           String @unique
+  user             User   @relation(fields: [userId], references: [id])
+  defaultModel     String @default("claude-sonnet-4-6")
+  theme            String @default("system")
+  apiKeys          Json?
+  mcpServers       Json?
+  agentPreferences Json?
+}
+
+model UsageLog {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  model        String
+  inputTokens  Int
+  outputTokens Int
+  cost         Float
+  agentType    String?
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
