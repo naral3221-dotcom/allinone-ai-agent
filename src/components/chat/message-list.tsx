@@ -2,6 +2,7 @@
 
 import type { Message } from 'ai';
 import { cn } from '@/lib/utils/cn';
+import { MarkdownMessage } from './markdown-message';
 
 interface MessageListProps {
   messages: Message[];
@@ -42,7 +43,7 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
                 : 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'
             )}
           >
-            <p className="whitespace-pre-wrap">{message.content}</p>
+            <MarkdownMessage content={message.content} role={message.role} />
           </div>
         </div>
       ))}

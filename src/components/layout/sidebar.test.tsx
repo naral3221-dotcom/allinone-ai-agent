@@ -6,6 +6,11 @@ vi.mock('next/navigation', () => ({
   usePathname: vi.fn(() => '/chat'),
 }));
 
+global.fetch = vi.fn().mockResolvedValue({
+  ok: true,
+  json: () => Promise.resolve([]),
+});
+
 describe('Sidebar', () => {
   it('should render all navigation items', () => {
     render(<Sidebar />);
@@ -23,9 +28,9 @@ describe('Sidebar', () => {
     expect(screen.getByText('AI Workspace')).toBeDefined();
   });
 
-  it('should have correct href for nav items', () => {
+  it('should show history section on chat route', () => {
     render(<Sidebar />);
-    const chatLink = screen.getByText('Chat').closest('a');
-    expect(chatLink?.getAttribute('href')).toBe('/chat');
+    expect(screen.getByText('History')).toBeDefined();
+    expect(screen.getByText('+ New')).toBeDefined();
   });
 });

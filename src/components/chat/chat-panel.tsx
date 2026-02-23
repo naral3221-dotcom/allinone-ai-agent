@@ -18,7 +18,7 @@ export function ChatPanel({ conversationId }: ChatPanelProps) {
     useChat({
       api: '/api/chat',
       id: conversationId,
-      body: { modelId },
+      body: { modelId, conversationId },
     });
 
   return (
