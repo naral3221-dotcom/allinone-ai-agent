@@ -1,0 +1,10 @@
+export { PoemoraClient } from './client';
+export { poemoraClient } from './client.singleton';
+export { DashboardService } from './dashboard';
+export type { DashboardSummary, MetricsComparison } from './dashboard';
+export { dashboardService } from './dashboard.singleton';
+export { InsightGenerator } from './insights';
+export type { Insight, InsightRequest } from './insights';
+export { insightGenerator } from './insights.singleton';
+export type { PlatformProvider } from './provider';
+export type { Campaign, AdSet, MetricData, DateRange, CampaignReport, PlatformConfig } from './types';
