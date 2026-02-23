@@ -18,8 +18,9 @@ describe('Sidebar', () => {
     expect(screen.getByText('Chat')).toBeDefined();
     expect(screen.getByText('Research')).toBeDefined();
     expect(screen.getByText('Documents')).toBeDefined();
-    expect(screen.getByText('Canvas')).toBeDefined();
     expect(screen.getByText('Knowledge')).toBeDefined();
+    expect(screen.getByText('Workflows')).toBeDefined();
+    expect(screen.getByText('Marketing')).toBeDefined();
     expect(screen.getByText('Settings')).toBeDefined();
   });
 

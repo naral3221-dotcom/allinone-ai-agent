@@ -14,8 +14,9 @@ const NAV_ITEMS = [
   { href: '/chat', label: 'Chat', icon: '💬' },
   { href: '/research', label: 'Research', icon: '🔍' },
   { href: '/documents', label: 'Documents', icon: '📄' },
-  { href: '/canvas', label: 'Canvas', icon: '🎨' },
   { href: '/knowledge', label: 'Knowledge', icon: '📚' },
+  { href: '/workflows', label: 'Workflows', icon: '⚡' },
+  { href: '/marketing', label: 'Marketing', icon: '📊' },
 ] as const;
 
 export function Sidebar() {
