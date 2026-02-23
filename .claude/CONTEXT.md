@@ -6,8 +6,8 @@
 
 ## Last Updated
 - **날짜**: 2026-02-23
-- **작업 상태**: Sprint 0 - Project Setup 완료
-- **현재 작업**: Sprint 1 준비 중
+- **작업 상태**: Sprint 1 - MVP Chat Interface 완료
+- **현재 작업**: Sprint 2 준비 중
 
 ---
 
