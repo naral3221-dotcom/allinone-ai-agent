@@ -6,8 +6,8 @@
 
 ## Last Updated
 - **날짜**: 2026-02-23
-- **작업 상태**: Sprint 5 - Poemora Integration 완료
-- **현재 작업**: 전체 Sprint 0~5 완료
+- **작업 상태**: Sprint 6 - Workspace UI & React Hooks 완료
+- **현재 작업**: 전체 Sprint 0~6 완료
 
 ---
 
@@ -18,39 +18,42 @@
 ### Sprint 2: Agent System — ✅ 완료
 ### Sprint 3: Knowledge & RAG — ✅ 완료
 ### Sprint 4: Content & Automation — ✅ 완료
-
 ### Sprint 5: Poemora Integration — ✅ 완료
-1. ✅ Poemora API 브릿지 (PlatformProvider DI + PoemoraClient)
-2. ✅ Marketing Agent (LangGraph, 5 분석 타입)
-3. ✅ Dashboard Service (summary, comparison, top campaigns)
-4. ✅ Marketing Insight Generator (AI 분석 → 인사이트 + 추천)
-5. ✅ Marketing API (campaigns, dashboard, metrics, insights)
+
+### Sprint 6: Workspace UI & React Hooks — ✅ 완료
+1. ✅ UserSettings Service + Settings API (GET/PUT)
+2. ✅ Custom React Hooks (useConversations, useKnowledge, useDocuments, useSettings, useWorkflow)
+3. ✅ Settings Page (모델 선택, 테마, API 키 관리)
+4. ✅ Knowledge Base Page (목록/생성/삭제, 엔트리, 검색)
+5. ✅ Documents Page (목록/생성, 에디터 + AI Assist 6 액션)
+6. ✅ Research Page (딥 리서치 폼, 결과, 스텝 타임라인)
 
 ---
 
 ## State
 ```
-Sprint 5 완료 → 전체 MVP 완성
-- 63 test files, 452 tests 모두 통과
+Sprint 6 완료
+- 87 test files, 599 tests 모두 통과
 - 6개 에이전트: orchestrator, research, code, content, data, marketing
-- 워크플로우 엔진 + 프롬프트 템플릿 + AI 문서 에디터
-- Poemora 마케팅 플랫폼 통합
+- 5개 워크스페이스 페이지: chat, research, documents, knowledge, settings
+- 5개 React 훅: useConversations, useKnowledge, useDocuments, useSettings, useWorkflow
 ```
 
 ---
 
-## Key Files (Sprint 5 추가)
+## Key Files (Sprint 6 추가)
 ```
-src/lib/integrations/poemora/types.ts        — 마케팅 도메인 타입
-src/lib/integrations/poemora/provider.ts     — PlatformProvider 인터페이스
-src/lib/integrations/poemora/client.ts       — Poemora API 클라이언트
-src/lib/integrations/poemora/dashboard.ts    — 대시보드 서비스
-src/lib/integrations/poemora/insights.ts     — 인사이트 생성기
-src/agents/marketing/{state,nodes,graph}.ts  — Marketing Agent
-src/app/api/marketing/campaigns/             — 캠페인 API
-src/app/api/marketing/dashboard/             — 대시보드 API
-src/app/api/marketing/metrics/               — 메트릭스 API
-src/app/api/marketing/insights/              — 인사이트 API
+src/lib/db/settings.service.ts              — UserSettings 서비스
+src/app/api/settings/route.ts               — Settings API
+src/hooks/                                  — 5개 React 훅 + barrel export
+src/components/settings/                    — Settings 컴포넌트
+src/components/knowledge/                   — Knowledge Base 컴포넌트
+src/components/documents/                   — Documents 컴포넌트
+src/components/research/                    — Research 컴포넌트
+src/app/(workspace)/settings/page.tsx       — Settings 페이지
+src/app/(workspace)/knowledge/              — Knowledge Base 페이지 (목록 + 상세)
+src/app/(workspace)/documents/              — Documents 페이지 (목록 + 에디터)
+src/app/(workspace)/research/page.tsx       — Research 페이지
 ```
 
 ---
