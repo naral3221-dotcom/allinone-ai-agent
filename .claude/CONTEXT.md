@@ -6,64 +6,66 @@
 
 ## Last Updated
 - **날짜**: 2026-02-23
-- **작업 상태**: Sprint 1 - MVP Chat Interface 완료
-- **현재 작업**: Sprint 2 준비 중
+- **작업 상태**: Sprint 2 - Agent System 완료
+- **현재 작업**: Sprint 3 준비 중
 
 ---
 
-## Current Sprint
-**Sprint 0: Project Setup** — ✅ 완료
+## Completed Sprints
 
-### 완료 항목
-1. ✅ **Next.js 16 프로젝트 초기화** — App Router, TypeScript strict mode
-2. ✅ **Clean Architecture 폴더 구조 생성** — agents/, lib/, components/, hooks/, types/
-3. ✅ **Prisma + PostgreSQL + pgvector 설정** — 스키마 정의 완료 (6 모델)
-4. ✅ **Clerk 인증 설정** — 미들웨어, sign-in/up 페이지, 라우트 보호
-5. ✅ **Vitest + 테스트 환경 구성** — 13 파일 55 테스트 통과
-6. ✅ **Vercel AI SDK 기본 설정** — 멀티 프로바이더, 모델 라우터
-7. ✅ **Upstash Redis 캐시 레이어** — cache, rate-limit 유틸리티
-8. ✅ **shadcn/ui + 레이아웃 쉘** — Sidebar, Header, Button
-9. ✅ **기본 채팅 프로토타입** — API route, ChatPanel, MessageList, ChatInput, ModelSelector
-10. ✅ **CI/CD 파이프라인** — GitHub Actions (lint, type-check, test, build)
+### Sprint 0: Project Setup — ✅ 완료
+Next.js 16, Clerk 인증, Vercel AI SDK, Redis 캐시, shadcn/ui, CI/CD
+
+### Sprint 1: MVP Chat Interface — ✅ 완료
+Prisma DB, ConversationService, LLM 인터페이스 분리, 대화 CRUD API, 채팅 UI
+
+### Sprint 2: Agent System — ✅ 완료
+1. ✅ Agent 도메인 엔티티 + DB 스키마 (AgentRun 모델)
+2. ✅ LangGraph 오케스트레이터 (route → execute 파이프라인)
+3. ✅ Research Agent (analyze → search → synthesize)
+4. ✅ Code Agent (classify → execute)
+5. ✅ MCP Tool Registry (MCPClient + MCPToolRegistry)
+6. ✅ AgentRunService (CRUD + 히스토리 + 페이지네이션)
+7. ✅ Agent 실행 API (POST/GET /api/agent/run, GET /api/agent/run/[id])
+8. ✅ Tool Call UI 컴포넌트 (AgentStepCard, ToolCallCard)
 
 ---
 
 ## State
 ```
-Sprint 0 완료 → Sprint 1 진입 가능
-- 13 test files, 55 tests 모두 통과
-- 기본 채팅 UI 프로토타입 동작
-- Clerk 인증 설정 완료 (env 키 필요)
-- CI/CD 워크플로우 작성 완료
+Sprint 2 완료 → Sprint 3 진입 가능
+- 30 test files, 176 tests 모두 통과
+- Agent 시스템: 오케스트레이터 + Research + Code Agent
+- MCP 프로토콜 기반 도구 연동 구조
+- Agent 실행 API + 히스토리 저장
 ```
 
 ---
 
-## Key Files
+## Key Files (Sprint 2 추가)
 ```
-src/middleware.ts                              — Clerk 라우트 보호
-src/app/layout.tsx                             — ClerkProvider 래핑
-src/app/(workspace)/layout.tsx                 — Sidebar + Header 레이아웃
-src/app/api/chat/route.ts                      — 스트리밍 채팅 API
-src/lib/ai/providers.ts                        — LLM 프로바이더 (Anthropic/OpenAI/Google)
-src/lib/ai/models.ts                           — 모델 레지스트리 + 메타데이터
-src/lib/ai/router.ts                           — 복잡도 기반 모델 라우팅
-src/lib/cache/cache.ts                         — Redis 캐시 유틸리티
-src/lib/cache/rate-limit.ts                    — 레이트 리미터
-src/components/chat/chat-panel.tsx             — 채팅 패널 (useChat 연동)
-src/components/layout/sidebar.tsx              — 네비게이션 사이드바
-prisma/schema.prisma                           — DB 스키마 (6 모델 + pgvector)
-.github/workflows/ci.yml                       — CI 파이프라인
+src/agents/_shared/agent.types.ts            — Agent 도메인 타입
+src/agents/orchestrator/{state,nodes,graph}.ts — 오케스트레이터 (LangGraph)
+src/agents/research/{state,tools,nodes,graph}.ts — 리서치 에이전트
+src/agents/code/{state,nodes,graph}.ts        — 코드 에이전트
+src/lib/mcp/{types,client,index}.ts           — MCP 클라이언트/레지스트리
+src/lib/db/agent-run.service.ts               — AgentRun DB 서비스
+src/app/api/agent/run/route.ts                — Agent 실행 API (POST+GET)
+src/app/api/agent/run/[id]/route.ts           — Agent 상세 조회 API
+src/components/chat/agent-step-card.tsx        — 에이전트 스텝 시각화
+src/components/chat/tool-call-card.tsx         — 도구 호출 시각화
 ```
 
 ---
 
 ## Important Decisions Made
 ```
-1. UI는 Sprint 0에서 최소한의 레이아웃 쉘만 구현, 세부 UI는 Sprint 1에서
-2. 모델 라우팅은 복잡도 기반 (simple→fast, moderate→balanced, complex→powerful)
-3. 캐시 레이어는 Upstash Redis + sliding window rate limiter
-4. Clerk 인증은 미들웨어 기반 라우트 보호 (/, /sign-in, /sign-up, /api/webhooks 공개)
+1. UI는 인프라/도메인 완성 후 마지막에 구현 (인프라 우선)
+2. 모델 라우팅: 복잡도 기반 (simple→haiku, moderate→sonnet, complex→opus)
+3. LangGraph.js: Vercel AI SDK의 generateText를 노드 내에서 사용
+4. Research Agent: SearchProvider 인터페이스 DI (테스트 가능, 교체 가능)
+5. Agent 실행: POST /api/agent/run → createRun → invoke orchestrator → completeRun/failRun
+6. MCP: HTTP 기반 도구 디스커버리 + 호출 (MCPClient + MCPToolRegistry)
 ```
 
 ---

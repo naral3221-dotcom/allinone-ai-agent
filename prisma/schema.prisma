@@ -17,6 +17,7 @@ model User {
   conversations  Conversation[]
   documents      Document[]
   knowledgeBases KnowledgeBase[]
+  agentRuns      AgentRun[]
   settings       UserSettings?
   usageLogs      UsageLog[]
   createdAt      DateTime        @default(now())
@@ -24,16 +25,17 @@ model User {
 }
 
 model Conversation {
-  id        String    @id @default(cuid())
+  id        String     @id @default(cuid())
   userId    String
-  user      User      @relation(fields: [userId], references: [id])
+  user      User       @relation(fields: [userId], references: [id])
   title     String?
   messages  Message[]
+  agentRuns AgentRun[]
   tags      String[]
-  pinned    Boolean   @default(false)
-  archived  Boolean   @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  pinned    Boolean    @default(false)
+  archived  Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
   @@index([userId, updatedAt])
 }
@@ -98,6 +100,35 @@ model KnowledgeEntry {
   createdAt       DateTime                    @default(now())
 
   @@index([knowledgeBaseId])
+}
+
+model AgentRun {
+  id             String         @id @default(cuid())
+  userId         String
+  user           User           @relation(fields: [userId], references: [id])
+  conversationId String?
+  conversation   Conversation?  @relation(fields: [conversationId], references: [id])
+  agentType      String
+  status         AgentRunStatus @default(pending)
+  input          String
+  output         String?
+  steps          Json?
+  toolCalls      Json?
+  model          String?
+  error          String?
+  duration       Int?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@index([userId, createdAt])
+  @@index([conversationId])
+}
+
+enum AgentRunStatus {
+  pending
+  running
+  completed
+  failed
 }
 
 model UserSettings {
