@@ -11,3 +11,5 @@ export { DocumentService } from './document.service';
 export { documentService } from './document.service.singleton';
 export { WorkflowService } from './workflow.service';
 export { workflowService } from './workflow.service.singleton';
+export { SettingsService } from './settings.service';
+export { settingsService } from './settings.service.singleton';
