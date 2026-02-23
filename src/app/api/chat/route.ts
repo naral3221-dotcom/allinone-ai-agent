@@ -4,6 +4,9 @@ import type { ModelId } from '@/lib/ai/models';
 import { MODEL_REGISTRY } from '@/lib/ai/models';
 import { getAuthenticatedUser } from '@/lib/auth/get-user';
 import { conversationService } from '@/lib/db';
+import { RAGPipeline } from '@/lib/rag/pipeline';
+
+const ragPipeline = new RAGPipeline();
 
 export const maxDuration = 60;
 
@@ -16,7 +19,7 @@ export async function POST(request: Request) {
     });
   }
 
-  const { messages, modelId = 'claude-sonnet', conversationId } =
+  const { messages, modelId = 'claude-sonnet', conversationId, knowledgeBaseId } =
     await request.json();
 
   const modelInfo = MODEL_REGISTRY[modelId as ModelId];
@@ -38,8 +41,23 @@ export async function POST(request: Request) {
     });
   }
 
+  // RAG context retrieval
+  let system: string | undefined;
+  if (knowledgeBaseId) {
+    const contexts = await ragPipeline.retrieveContext({
+      query: lastUserMessage?.content ?? '',
+      knowledgeBaseId,
+    });
+    if (contexts.length > 0) {
+      system = 'Use the following context to answer the user\'s question:\n\n' +
+        contexts.map(c => c.content).join('\n---\n') + '\n\n' +
+        'If the context is not relevant, you may answer from your general knowledge.';
+    }
+  }
+
   const result = streamText({
     model,
+    system,
     messages,
     maxTokens: modelInfo.maxOutput,
     async onFinish({ text, usage }) {
