@@ -1,5 +1,5 @@
 import { getAuthenticatedUser } from '@/lib/auth/get-user';
-import { AIAssistService } from '@/lib/ai/assist';
+import { AIAssistService, type AssistAction } from '@/lib/ai/assist';
 
 function jsonResponse(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -31,7 +31,7 @@ export async function POST(
   const assistService = new AIAssistService();
   const { result } = await assistService.assist({
     text,
-    action,
+    action: action as AssistAction,
     options: options ?? {},
   });
 

@@ -1,16 +1,17 @@
 import { prisma } from './prisma';
+import type { Prisma } from '@prisma/client';
 
 interface CreateDocumentInput {
   userId: string;
   title: string;
-  content: unknown;
+  content: Prisma.InputJsonValue;
   type: string;
   tags?: string[];
 }
 
 interface UpdateDocumentInput {
   title?: string;
-  content?: unknown;
+  content?: Prisma.InputJsonValue;
   tags?: string[];
 }
 
@@ -45,7 +46,7 @@ export class DocumentService {
   }
 
   async update(id: string, input: UpdateDocumentInput) {
-    const data: Record<string, unknown> = {};
+    const data: Prisma.DocumentUpdateInput = {};
     if (input.title !== undefined) data.title = input.title;
     if (input.content !== undefined) data.content = input.content;
     if (input.tags !== undefined) data.tags = input.tags;

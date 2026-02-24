@@ -1,18 +1,16 @@
-import { currentUser } from '@clerk/nextjs/server';
-import { conversationService } from '@/lib/db';
+import { auth } from '@/lib/auth/auth';
+import { prisma } from '@/lib/db/prisma';
 
 export async function getAuthenticatedUser() {
-  const clerkUser = await currentUser();
+  const session = await auth();
 
-  if (!clerkUser) {
+  if (!session?.user?.id) {
     return null;
   }
 
-  const user = await conversationService.ensureUser(
-    clerkUser.id,
-    clerkUser.emailAddresses[0]?.emailAddress ?? '',
-    clerkUser.firstName ?? undefined
-  );
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+  });
 
   return user;
 }

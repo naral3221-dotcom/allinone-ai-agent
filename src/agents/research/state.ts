@@ -9,7 +9,7 @@ export interface SearchResult {
 
 export const ResearchState = Annotation.Root({
   messages: Annotation<Array<{ role: string; content: string }>>({
-    reducer: (left, right) => {
+    value: (left, right) => {
       if (Array.isArray(right)) return left.concat(right);
       return left.concat([right]);
     },
@@ -17,26 +17,29 @@ export const ResearchState = Annotation.Root({
   }),
   query: Annotation<string>,
   searchQueries: Annotation<string[]>({
+    value: (_, b) => b,
     default: () => [],
   }),
   searchResults: Annotation<SearchResult[]>({
-    reducer: (left, right) => {
+    value: (left, right) => {
       if (Array.isArray(right)) return left.concat(right);
       return left.concat([right]);
     },
     default: () => [],
   }),
   toolCalls: Annotation<ToolCallRecord[]>({
-    reducer: (left, right) => {
+    value: (left, right) => {
       if (Array.isArray(right)) return left.concat(right);
       return left.concat([right]);
     },
     default: () => [],
   }),
   summary: Annotation<string>({
+    value: (_, b) => b,
     default: () => '',
   }),
   isComplete: Annotation<boolean>({
+    value: (_, b) => b,
     default: () => false,
   }),
 });

@@ -1,4 +1,5 @@
 import { prisma } from './prisma';
+import type { Prisma } from '@prisma/client';
 import type { AgentRunResult } from '@/agents/_shared';
 
 interface CreateRunInput {
@@ -43,8 +44,8 @@ export class AgentRunService {
       data: {
         status: 'completed',
         output: result.output,
-        steps: result.steps,
-        toolCalls: result.toolCalls,
+        steps: result.steps as unknown as Prisma.InputJsonValue,
+        toolCalls: result.toolCalls as unknown as Prisma.InputJsonValue,
         model: result.model,
         duration: result.duration,
       },

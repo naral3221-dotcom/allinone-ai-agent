@@ -8,7 +8,7 @@ function jsonResponse(data: unknown, status = 200) {
   });
 }
 
-export async function GET() {
+export async function GET(_request: Request) {
   const user = await getAuthenticatedUser();
   if (!user) {
     return jsonResponse({ error: 'Unauthorized' }, 401);

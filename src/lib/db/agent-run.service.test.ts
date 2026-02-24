@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import type { AgentType } from '@/agents/_shared';
 
 const { mockPrisma } = vi.hoisted(() => {
   return {
@@ -178,7 +179,7 @@ describe('AgentRunService', () => {
       const steps = [
         {
           id: 'step-1',
-          agentType: 'research',
+          agentType: 'research' as AgentType,
           action: 'web_search',
           input: 'quantum computing',
           output: 'search results...',
@@ -239,7 +240,7 @@ describe('AgentRunService', () => {
       const steps = [
         {
           id: 'step-1',
-          agentType: 'code',
+          agentType: 'code' as AgentType,
           action: 'generate',
           input: 'sort array',
           output: 'function sort() {...}',
@@ -247,7 +248,7 @@ describe('AgentRunService', () => {
         },
         {
           id: 'step-2',
-          agentType: 'code',
+          agentType: 'code' as AgentType,
           action: 'review',
           input: 'function sort() {...}',
           output: 'Looks good',

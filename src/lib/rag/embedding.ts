@@ -7,9 +7,7 @@ export class EmbeddingService {
 
   constructor(options?: { model?: string; dimension?: number }) {
     this.dimension = options?.dimension ?? 1536;
-    this.model = openai.embedding(options?.model ?? 'text-embedding-3-small', {
-      dimensions: this.dimension,
-    });
+    this.model = openai.embedding(options?.model ?? 'text-embedding-3-small');
   }
 
   async embedText(text: string): Promise<number[]> {

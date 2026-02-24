@@ -59,7 +59,7 @@ export async function POST(request: Request) {
     model,
     system,
     messages,
-    maxTokens: modelInfo.maxOutput,
+    maxOutputTokens: modelInfo.maxOutput,
     async onFinish({ text, usage }) {
       // Save assistant message to DB
       if (conversationId && conversationId !== 'new') {
@@ -68,8 +68,8 @@ export async function POST(request: Request) {
           content: text,
           model: modelId,
           metadata: {
-            inputTokens: usage.promptTokens,
-            outputTokens: usage.completionTokens,
+            inputTokens: usage.inputTokens ?? 0,
+            outputTokens: usage.outputTokens ?? 0,
           },
         });
 
@@ -90,21 +90,23 @@ export async function POST(request: Request) {
       }
 
       // Log usage
-      if (usage.promptTokens > 0) {
+      const usedInput = usage.inputTokens ?? 0;
+      const usedOutput = usage.outputTokens ?? 0;
+      if (usedInput > 0) {
         const cost =
-          (usage.promptTokens / 1000) * modelInfo.costPer1kInput +
-          (usage.completionTokens / 1000) * modelInfo.costPer1kOutput;
+          (usedInput / 1000) * modelInfo.costPer1kInput +
+          (usedOutput / 1000) * modelInfo.costPer1kOutput;
 
         await conversationService.logUsage({
           userId: user.id,
           model: modelId,
-          inputTokens: usage.promptTokens,
-          outputTokens: usage.completionTokens,
+          inputTokens: usedInput,
+          outputTokens: usedOutput,
           cost,
         });
       }
     },
   });
 
-  return result.toDataStreamResponse();
+  return result.toTextStreamResponse();
 }

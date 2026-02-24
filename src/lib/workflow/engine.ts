@@ -64,7 +64,7 @@ export class WorkflowEngine {
           model: models['claude-sonnet'],
           system: getSystemPrompt(step.agentType),
           prompt: userPrompt,
-          maxTokens: 4096,
+          maxOutputTokens: 4096,
         });
 
         const duration = Date.now() - stepStart;

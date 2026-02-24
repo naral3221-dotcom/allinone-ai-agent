@@ -19,7 +19,7 @@ export async function classifyAction(
     model: models['claude-haiku'],
     system: ACTION_PROMPT,
     prompt: state.query,
-    maxTokens: 20,
+    maxOutputTokens: 20,
   });
 
   const action = text.trim().toLowerCase() as CodeAction;
@@ -42,7 +42,7 @@ export async function executeCode(
       role: m.role as 'user' | 'assistant' | 'system',
       content: m.content,
     })),
-    maxTokens: 4096,
+    maxOutputTokens: 4096,
   });
 
   return {

@@ -2,10 +2,10 @@ import type { LLMProvider, ModelMeta, ModelSelectionOptions } from './llm.interf
 import { models, getModel } from '@/lib/ai/providers';
 import { MODEL_REGISTRY, type ModelId } from '@/lib/ai/models';
 import { selectModel as routeModel } from '@/lib/ai/router';
-import type { LanguageModelV1 } from 'ai';
+import type { LanguageModel } from 'ai';
 
 export class VercelAIAdapter implements LLMProvider {
-  getModel(modelId: string): LanguageModelV1 {
+  getModel(modelId: string): LanguageModel {
     const model = models[modelId as keyof typeof models];
     if (!model) {
       throw new Error(`Unknown model: ${modelId}`);

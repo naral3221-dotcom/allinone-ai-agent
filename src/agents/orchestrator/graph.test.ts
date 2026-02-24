@@ -69,7 +69,7 @@ describe('Orchestrator Nodes', () => {
     it('should generate response and mark complete', async () => {
       mockGenerateText.mockResolvedValue({
         text: 'Here is the answer...',
-        usage: { promptTokens: 100, completionTokens: 200 },
+        usage: { inputTokens: 100, outputTokens: 200 },
       });
 
       const result = await executeNode(makeState({ selectedAgent: 'research' }));
@@ -83,7 +83,7 @@ describe('Orchestrator Nodes', () => {
     it('should use agent-specific system prompt', async () => {
       mockGenerateText.mockResolvedValue({
         text: 'code output',
-        usage: { promptTokens: 50, completionTokens: 100 },
+        usage: { inputTokens: 50, outputTokens: 100 },
       });
 
       await executeNode(makeState({ selectedAgent: 'code' }));

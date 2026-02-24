@@ -32,7 +32,7 @@ export async function classifyIntent(
     model: models['claude-haiku'],
     system: INTENT_PROMPT,
     prompt: state.query,
-    maxTokens: 30,
+    maxOutputTokens: 30,
   });
 
   const analysisType = text.trim().toLowerCase() as MarketingAnalysisType;
@@ -65,7 +65,7 @@ export async function analyzeMarketing(
       role: m.role as 'user' | 'assistant' | 'system',
       content: m.content,
     })),
-    maxTokens: 4096,
+    maxOutputTokens: 4096,
   });
 
   return {

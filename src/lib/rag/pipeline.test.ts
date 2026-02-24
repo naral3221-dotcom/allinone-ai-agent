@@ -152,7 +152,7 @@ describe('RAGPipeline', () => {
         expect.objectContaining({
           model: { modelId: 'claude-sonnet' },
           prompt: 'What is AI?',
-          maxTokens: 4096,
+          maxOutputTokens: 4096,
         })
       );
     });

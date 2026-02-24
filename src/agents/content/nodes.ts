@@ -26,7 +26,7 @@ export async function classifyContent(
     model: models['claude-haiku'],
     system: CLASSIFY_PROMPT,
     prompt: state.query,
-    maxTokens: 20,
+    maxOutputTokens: 20,
   });
 
   const contentType = text.trim().toLowerCase() as ContentType;
@@ -49,7 +49,7 @@ export async function generateContent(
       role: m.role as 'user' | 'assistant' | 'system',
       content: m.content,
     })),
-    maxTokens: 4096,
+    maxOutputTokens: 4096,
   });
 
   return {

@@ -364,7 +364,7 @@ describe('InsightGenerator', () => {
     expect(mockGenerateText).toHaveBeenCalledWith(
       expect.objectContaining({
         prompt: expect.stringContaining('Summer Sale 2026'),
-        maxTokens: 4096,
+        maxOutputTokens: 4096,
       })
     );
   });

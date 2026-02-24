@@ -1,11 +1,12 @@
 import { prisma } from './prisma';
+import type { Prisma } from '@prisma/client';
 
 interface UpdateSettingsInput {
   defaultModel?: string;
   theme?: string;
   apiKeys?: Record<string, string>;
-  mcpServers?: unknown;
-  agentPreferences?: unknown;
+  mcpServers?: Prisma.InputJsonValue;
+  agentPreferences?: Prisma.InputJsonValue;
 }
 
 export type { UpdateSettingsInput };

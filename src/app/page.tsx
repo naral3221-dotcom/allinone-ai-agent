@@ -1,11 +1,11 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { auth } from '@/lib/auth/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
 export default async function Home() {
-  const user = await currentUser();
+  const session = await auth();
 
-  if (user) {
+  if (session) {
     redirect('/chat');
   }
 

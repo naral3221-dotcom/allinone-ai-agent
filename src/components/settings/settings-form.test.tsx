@@ -15,10 +15,10 @@ function defaultSettings() {
 }
 
 describe('SettingsForm', () => {
-  let onSave: ReturnType<typeof vi.fn>;
+  let onSave: ReturnType<typeof vi.fn<(data: { defaultModel: string; theme: string; apiKeys: Record<string, string> }) => Promise<boolean>>>;
 
   beforeEach(() => {
-    onSave = vi.fn().mockResolvedValue(true);
+    onSave = vi.fn<(data: { defaultModel: string; theme: string; apiKeys: Record<string, string> }) => Promise<boolean>>().mockResolvedValue(true);
   });
 
   it('should render all sections (model, theme, API keys)', () => {

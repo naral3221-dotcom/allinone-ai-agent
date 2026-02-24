@@ -9,7 +9,7 @@ export type MarketingAnalysisType =
 
 export const MarketingState = Annotation.Root({
   messages: Annotation<Array<{ role: string; content: string }>>({
-    reducer: (left, right) => {
+    value: (left, right) => {
       if (Array.isArray(right)) return left.concat(right);
       return left.concat([right]);
     },
@@ -17,18 +17,23 @@ export const MarketingState = Annotation.Root({
   }),
   query: Annotation<string>,
   analysisType: Annotation<MarketingAnalysisType>({
+    value: (_, b) => b,
     default: () => 'campaign-analysis' as MarketingAnalysisType,
   }),
   campaignData: Annotation<string>({
+    value: (_, b) => b,
     default: () => '',
   }),
   insight: Annotation<string>({
+    value: (_, b) => b,
     default: () => '',
   }),
   recommendations: Annotation<string>({
+    value: (_, b) => b,
     default: () => '',
   }),
   isComplete: Annotation<boolean>({
+    value: (_, b) => b,
     default: () => false,
   }),
 });

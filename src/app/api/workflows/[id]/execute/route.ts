@@ -25,6 +25,14 @@ export async function POST(
     return jsonResponse({ error: 'Not found' }, 404);
   }
 
-  const result = await workflowEngine.execute(workflow);
+  const result = await workflowEngine.execute({
+    steps: workflow.steps.map((s) => ({
+      id: s.id,
+      order: s.order,
+      agentType: s.agentType,
+      prompt: s.prompt,
+      config: (s.config as Record<string, unknown>) ?? undefined,
+    })),
+  });
   return jsonResponse({ result });
 }

@@ -18,7 +18,7 @@ vi.mock('@/lib/db/agent-run.service.singleton', () => ({
 
 import { GET } from './route';
 
-const MOCK_USER = { id: 'user-1', clerkId: 'clerk-abc', email: 'test@example.com' };
+const MOCK_USER = { id: 'user-1', email: 'test@example.com' };
 
 function makeGetRequest(id: string): Request {
   return new Request(`http://localhost/api/agent/run/${id}`, { method: 'GET' });

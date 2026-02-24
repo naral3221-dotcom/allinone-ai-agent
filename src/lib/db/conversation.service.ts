@@ -19,11 +19,11 @@ interface LogUsageInput {
 }
 
 export class ConversationService {
-  async ensureUser(clerkId: string, email: string, name?: string) {
+  async ensureUser(email: string, name?: string) {
     return prisma.user.upsert({
-      where: { clerkId },
-      update: { email, name },
-      create: { clerkId, email, name },
+      where: { email },
+      update: { name },
+      create: { email, name },
     });
   }
 

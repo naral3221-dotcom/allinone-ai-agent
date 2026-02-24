@@ -137,7 +137,7 @@ export class InsightGenerator {
       model: models['claude-sonnet'],
       system: systemPrompt,
       prompt: dataSummary,
-      maxTokens: 4096,
+      maxOutputTokens: 4096,
     });
 
     const parsed = parseInsightResponse(text);

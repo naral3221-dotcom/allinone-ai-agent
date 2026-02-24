@@ -57,7 +57,7 @@ function makeGetRequest(queryParams?: string): Request {
   return new Request(url, { method: 'GET' });
 }
 
-const MOCK_USER = { id: 'user-1', clerkId: 'clerk-abc', email: 'test@example.com' };
+const MOCK_USER = { id: 'user-1', email: 'test@example.com' };
 
 // ---------------------------------------------------------------------------
 // Tests
@@ -161,7 +161,8 @@ describe('POST /api/agent/run', () => {
     // Verify the agent run was created with correct params
     expect(mockAgentRunService.createRun).toHaveBeenCalledWith({
       userId: MOCK_USER.id,
-      query: 'What is quantum computing?',
+      agentType: 'orchestrator',
+      input: 'What is quantum computing?',
       conversationId: undefined,
     });
 
@@ -179,7 +180,6 @@ describe('POST /api/agent/run', () => {
     expect(mockAgentRunService.completeRun).toHaveBeenCalledWith(
       'run-1',
       expect.objectContaining({
-        agentType: 'research',
         output: orchestratorOutput.output,
         steps: orchestratorOutput.steps,
         toolCalls: orchestratorOutput.toolCalls,

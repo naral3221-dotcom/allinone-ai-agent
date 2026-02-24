@@ -1,6 +1,6 @@
 import { generateText } from 'ai';
 import { models } from '@/lib/ai/providers';
-import type { ModelId } from '@/lib/ai/models';
+
 import { EmbeddingService } from './embedding';
 import { VectorStore } from './vector-store';
 
@@ -38,7 +38,7 @@ export class RAGPipeline {
     contexts: RetrievedContext[];
     modelId?: string;
   }): Promise<{ answer: string; sources: Array<{ title: string; similarity: number }> }> {
-    const modelId = (input.modelId ?? 'claude-sonnet') as ModelId;
+    const modelId = (input.modelId ?? 'claude-sonnet') as keyof typeof models;
     const model = models[modelId];
 
     let system = 'You are a helpful assistant. Answer the user\'s question based on the provided context. If the context doesn\'t contain relevant information, say so.\n\n';
@@ -54,7 +54,7 @@ export class RAGPipeline {
       model,
       system,
       prompt: input.query,
-      maxTokens: 4096,
+      maxOutputTokens: 4096,
     });
 
     return {

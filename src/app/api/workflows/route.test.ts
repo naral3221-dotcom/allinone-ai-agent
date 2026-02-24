@@ -43,7 +43,7 @@ function makeGetRequest(): Request {
   return new Request('http://localhost/api/workflows', { method: 'GET' });
 }
 
-const MOCK_USER = { id: 'user-1', clerkId: 'clerk-abc', email: 'test@example.com' };
+const MOCK_USER = { id: 'user-1', email: 'test@example.com' };
 
 // ---------------------------------------------------------------------------
 // Tests

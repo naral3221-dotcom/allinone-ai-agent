@@ -1,7 +1,7 @@
-import type { LanguageModelV1 } from 'ai';
+import type { LanguageModel } from 'ai';
 
 export interface LLMProvider {
-  getModel(modelId: string): LanguageModelV1;
+  getModel(modelId: string): LanguageModel;
   listModels(): ModelMeta[];
   selectModel(options: ModelSelectionOptions): ModelMeta;
 }
@@ -22,7 +22,7 @@ export interface ModelSelectionOptions {
 }
 
 export interface StreamOptions {
-  model: LanguageModelV1;
+  model: LanguageModel;
   messages: LLMMessage[];
   systemPrompt?: string;
   maxTokens?: number;

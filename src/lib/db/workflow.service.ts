@@ -1,4 +1,5 @@
 import { prisma } from './prisma';
+import type { Prisma } from '@prisma/client';
 
 export class WorkflowService {
   async create(input: {
@@ -9,23 +10,18 @@ export class WorkflowService {
       order: number;
       agentType: string;
       prompt: string;
-      config?: Record<string, unknown>;
+      config?: Prisma.InputJsonValue;
     }>;
   }) {
-    const data: Record<string, unknown> = {
-      userId: input.userId,
-      name: input.name,
-      steps: {
-        create: input.steps,
-      },
-    };
-
-    if (input.description !== undefined) {
-      data.description = input.description;
-    }
-
     return prisma.workflow.create({
-      data,
+      data: {
+        userId: input.userId,
+        name: input.name,
+        ...(input.description !== undefined ? { description: input.description } : {}),
+        steps: {
+          create: input.steps,
+        },
+      },
       include: { steps: { orderBy: { order: 'asc' } } },
     });
   }
@@ -70,13 +66,16 @@ export class WorkflowService {
       order: number;
       agentType: string;
       prompt: string;
-      config?: Record<string, unknown>;
+      config?: Prisma.InputJsonValue;
     }
   ) {
     return prisma.workflowStep.create({
       data: {
         workflowId,
-        ...input,
+        order: input.order,
+        agentType: input.agentType,
+        prompt: input.prompt,
+        ...(input.config !== undefined ? { config: input.config } : {}),
       },
     });
   }

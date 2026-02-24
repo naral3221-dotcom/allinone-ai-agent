@@ -16,7 +16,7 @@ export async function analyzeQuery(
     model: models['claude-haiku'],
     system: `Generate 1-3 search queries for the user's research question. Return one query per line, nothing else.`,
     prompt: state.query,
-    maxTokens: 200,
+    maxOutputTokens: 200,
   });
 
   const queries = text
@@ -59,7 +59,7 @@ export async function synthesize(
     model: models['claude-sonnet'],
     system: `You are a research assistant. Synthesize the search results into a comprehensive answer. Cite sources with [number] references.`,
     prompt: `Question: ${state.query}\n\nSearch Results:\n${context}`,
-    maxTokens: 4096,
+    maxOutputTokens: 4096,
   });
 
   return {

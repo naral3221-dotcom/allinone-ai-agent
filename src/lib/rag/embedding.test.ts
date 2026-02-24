@@ -48,9 +48,7 @@ describe('EmbeddingService', () => {
 
       await service.embedText('Test input');
 
-      expect(openai.embedding).toHaveBeenCalledWith('text-embedding-3-small', {
-        dimensions: 1536,
-      });
+      expect(openai.embedding).toHaveBeenCalledWith('text-embedding-3-small');
     });
   });
 

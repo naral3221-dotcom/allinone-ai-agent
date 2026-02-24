@@ -39,7 +39,7 @@ function makeDeleteRequest(id: string): Request {
   return new Request(`http://localhost/api/knowledge/${id}`, { method: 'DELETE' });
 }
 
-const MOCK_USER = { id: 'user-1', clerkId: 'clerk-abc', email: 'test@example.com' };
+const MOCK_USER = { id: 'user-1', email: 'test@example.com' };
 
 // ---------------------------------------------------------------------------
 // Tests

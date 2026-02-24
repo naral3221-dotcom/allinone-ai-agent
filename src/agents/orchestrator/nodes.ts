@@ -20,7 +20,7 @@ export async function routeNode(
     model: models['claude-haiku'],
     system: ROUTING_PROMPT,
     prompt: state.query,
-    maxTokens: 20,
+    maxOutputTokens: 20,
   });
 
   const agent = text.trim().toLowerCase() as AgentType;
@@ -61,7 +61,7 @@ export async function executeNode(
       role: m.role as 'user' | 'assistant' | 'system',
       content: m.content,
     })),
-    maxTokens: 4096,
+    maxOutputTokens: 4096,
   });
 
   const step: AgentStep = {
@@ -69,7 +69,7 @@ export async function executeNode(
     agentType: state.selectedAgent,
     action: 'generate',
     input: state.query,
-    output: `Generated ${usage.completionTokens} tokens`,
+    output: `Generated ${usage.outputTokens ?? 0} tokens`,
     timestamp: Date.now(),
   };
 

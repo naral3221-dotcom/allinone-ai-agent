@@ -1,4 +1,4 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { auth } from '@/lib/auth/auth';
 import { redirect } from 'next/navigation';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
@@ -8,9 +8,9 @@ export default async function WorkspaceLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const user = await currentUser();
+  const session = await auth();
 
-  if (!user) {
+  if (!session) {
     redirect('/sign-in');
   }
 

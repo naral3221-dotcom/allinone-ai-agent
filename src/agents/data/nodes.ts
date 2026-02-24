@@ -32,7 +32,7 @@ export async function classifyAnalysis(
     model: models['claude-haiku'],
     system: ANALYSIS_TYPE_PROMPT,
     prompt: state.query,
-    maxTokens: 20,
+    maxOutputTokens: 20,
   });
 
   const analysisType = text.trim().toLowerCase() as AnalysisType;
@@ -61,7 +61,7 @@ export async function analyzeData(
       role: m.role as 'user' | 'assistant' | 'system',
       content: m.content,
     })),
-    maxTokens: 4096,
+    maxOutputTokens: 4096,
   });
 
   const result: Partial<DataStateType> = {

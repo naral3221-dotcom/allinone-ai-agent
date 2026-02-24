@@ -46,7 +46,7 @@ function makeGetRequest(queryParams?: string): Request {
   return new Request(url, { method: 'GET' });
 }
 
-const MOCK_USER = { id: 'user-1', clerkId: 'clerk-abc', email: 'test@example.com' };
+const MOCK_USER = { id: 'user-1', email: 'test@example.com' };
 
 // ---------------------------------------------------------------------------
 // Tests

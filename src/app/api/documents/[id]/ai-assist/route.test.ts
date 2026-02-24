@@ -38,7 +38,7 @@ function makePostRequest(id: string, body: Record<string, unknown>): Request {
   });
 }
 
-const MOCK_USER = { id: 'user-1', clerkId: 'clerk-abc', email: 'test@example.com' };
+const MOCK_USER = { id: 'user-1', email: 'test@example.com' };
 
 // ---------------------------------------------------------------------------
 // Tests

@@ -25,7 +25,8 @@ export async function POST(request: Request) {
   // Create run record
   const run = await agentRunService.createRun({
     userId: user.id,
-    query,
+    agentType: 'orchestrator',
+    input: query,
     conversationId,
   });
 
@@ -43,7 +44,6 @@ export async function POST(request: Request) {
 
     // Complete run with result
     await agentRunService.completeRun(run.id, {
-      agentType: result.selectedAgent,
       output: result.output,
       steps: result.steps,
       toolCalls: result.toolCalls,

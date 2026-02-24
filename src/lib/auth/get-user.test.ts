@@ -1,17 +1,19 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const { mockCurrentUser, mockEnsureUser } = vi.hoisted(() => ({
-  mockCurrentUser: vi.fn(),
-  mockEnsureUser: vi.fn(),
+const { mockAuth, mockFindUnique } = vi.hoisted(() => ({
+  mockAuth: vi.fn(),
+  mockFindUnique: vi.fn(),
 }));
 
-vi.mock('@clerk/nextjs/server', () => ({
-  currentUser: mockCurrentUser,
+vi.mock('@/lib/auth/auth', () => ({
+  auth: mockAuth,
 }));
 
-vi.mock('@/lib/db', () => ({
-  conversationService: {
-    ensureUser: mockEnsureUser,
+vi.mock('@/lib/db/prisma', () => ({
+  prisma: {
+    user: {
+      findUnique: mockFindUnique,
+    },
   },
 }));
 
@@ -22,35 +24,34 @@ describe('getAuthenticatedUser', () => {
     vi.clearAllMocks();
   });
 
-  it('should return null when no clerk user', async () => {
-    mockCurrentUser.mockResolvedValue(null);
-
+  it('should return null when no session', async () => {
+    mockAuth.mockResolvedValue(null);
     const result = await getAuthenticatedUser();
     expect(result).toBeNull();
   });
 
-  it('should upsert and return user when authenticated', async () => {
-    mockCurrentUser.mockResolvedValue({
-      id: 'clerk-123',
-      emailAddresses: [{ emailAddress: 'test@test.com' }],
-      firstName: 'Test',
-    });
-    mockEnsureUser.mockResolvedValue({
+  it('should return null when session has no user id', async () => {
+    mockAuth.mockResolvedValue({ user: {} });
+    const result = await getAuthenticatedUser();
+    expect(result).toBeNull();
+  });
+
+  it('should return user when authenticated', async () => {
+    mockAuth.mockResolvedValue({ user: { id: 'user-1', email: 'test@test.com' } });
+    mockFindUnique.mockResolvedValue({
       id: 'user-1',
-      clerkId: 'clerk-123',
       email: 'test@test.com',
+      name: 'Test',
     });
 
     const result = await getAuthenticatedUser();
     expect(result).toEqual({
       id: 'user-1',
-      clerkId: 'clerk-123',
       email: 'test@test.com',
+      name: 'Test',
     });
-    expect(mockEnsureUser).toHaveBeenCalledWith(
-      'clerk-123',
-      'test@test.com',
-      'Test'
-    );
+    expect(mockFindUnique).toHaveBeenCalledWith({
+      where: { id: 'user-1' },
+    });
   });
 });

@@ -1,7 +1,8 @@
 'use client';
 
-import { useChat } from 'ai/react';
-import { useState } from 'react';
+import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport } from 'ai';
+import { useState, useMemo, type FormEvent } from 'react';
 import type { ModelId } from '@/lib/ai/models';
 import { MessageList } from './message-list';
 import { ChatInput } from './chat-input';
@@ -13,13 +14,31 @@ interface ChatPanelProps {
 
 export function ChatPanel({ conversationId }: ChatPanelProps) {
   const [modelId, setModelId] = useState<ModelId>('claude-sonnet');
+  const [input, setInput] = useState('');
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading, stop } =
-    useChat({
-      api: '/api/chat',
-      id: conversationId,
-      body: { modelId, conversationId },
-    });
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: '/api/chat',
+        body: { modelId, conversationId },
+      }),
+    [modelId, conversationId]
+  );
+
+  const { messages, sendMessage, status, stop } = useChat({
+    id: conversationId,
+    transport,
+  });
+
+  const isLoading = status === 'submitted' || status === 'streaming';
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+    const text = input;
+    setInput('');
+    await sendMessage({ text });
+  };
 
   return (
     <div className="flex h-full flex-col">
@@ -35,11 +54,7 @@ export function ChatPanel({ conversationId }: ChatPanelProps) {
       <ChatInput
         input={input}
         isLoading={isLoading}
-        onInputChange={(value) =>
-          handleInputChange({
-            target: { value },
-          } as React.ChangeEvent<HTMLTextAreaElement>)
-        }
+        onInputChange={setInput}
         onSubmit={handleSubmit}
         onStop={stop}
       />

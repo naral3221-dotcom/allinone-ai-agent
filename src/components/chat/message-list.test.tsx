@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MessageList } from './message-list';
-import type { Message } from 'ai';
+import type { UIMessage } from 'ai';
 
 describe('MessageList', () => {
   it('should show empty state when no messages', () => {
@@ -11,9 +11,9 @@ describe('MessageList', () => {
   });
 
   it('should render user and assistant messages', () => {
-    const messages: Message[] = [
-      { id: '1', role: 'user', content: 'Hello' },
-      { id: '2', role: 'assistant', content: 'Hi there!' },
+    const messages: UIMessage[] = [
+      { id: '1', role: 'user', parts: [{ type: 'text', text: 'Hello' }] },
+      { id: '2', role: 'assistant', parts: [{ type: 'text', text: 'Hi there!' }] },
     ];
 
     render(<MessageList messages={messages} />);
@@ -22,8 +22,8 @@ describe('MessageList', () => {
   });
 
   it('should show loading indicator', () => {
-    const messages: Message[] = [
-      { id: '1', role: 'user', content: 'Hello' },
+    const messages: UIMessage[] = [
+      { id: '1', role: 'user', parts: [{ type: 'text', text: 'Hello' }] },
     ];
 
     render(<MessageList messages={messages} isLoading />);
@@ -31,8 +31,8 @@ describe('MessageList', () => {
   });
 
   it('should not show loading when not loading', () => {
-    const messages: Message[] = [
-      { id: '1', role: 'user', content: 'Hello' },
+    const messages: UIMessage[] = [
+      { id: '1', role: 'user', parts: [{ type: 'text', text: 'Hello' }] },
     ];
 
     render(<MessageList messages={messages} isLoading={false} />);

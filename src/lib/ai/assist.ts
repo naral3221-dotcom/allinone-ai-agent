@@ -37,7 +37,7 @@ export class AIAssistService {
       model: models['claude-sonnet'],
       system,
       prompt: input.text,
-      maxTokens: 4096,
+      maxOutputTokens: 4096,
     });
 
     return { result: text };

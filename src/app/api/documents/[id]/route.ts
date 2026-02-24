@@ -1,5 +1,6 @@
 import { getAuthenticatedUser } from '@/lib/auth/get-user';
 import { documentService } from '@/lib/db/document.service.singleton';
+import type { Prisma } from '@prisma/client';
 
 function jsonResponse(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -40,7 +41,7 @@ export async function PUT(
   const body = await request.json().catch(() => ({}));
   const { title, content, tags } = body;
 
-  const input: { title?: string; content?: unknown; tags?: string[] } = {};
+  const input: { title?: string; content?: Prisma.InputJsonValue; tags?: string[] } = {};
   if (title !== undefined) input.title = title;
   if (content !== undefined) input.content = content;
   if (tags !== undefined) input.tags = tags;

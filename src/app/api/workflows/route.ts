@@ -1,5 +1,6 @@
 import { getAuthenticatedUser } from '@/lib/auth/get-user';
 import { workflowService } from '@/lib/db/workflow.service.singleton';
+import type { Prisma } from '@prisma/client';
 
 function jsonResponse(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -33,7 +34,7 @@ export async function POST(request: Request) {
       order: number;
       agentType: string;
       prompt: string;
-      config?: Record<string, unknown>;
+      config?: Prisma.InputJsonValue;
     }>;
   } = { userId: user.id, name, steps };
 

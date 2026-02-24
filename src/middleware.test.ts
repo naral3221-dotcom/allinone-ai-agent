@@ -1,51 +1,41 @@
-import { describe, it, expect, vi } from 'vitest';
-import { createRouteMatcher } from '@clerk/nextjs/server';
+import { describe, it, expect } from 'vitest';
 
-vi.mock('@clerk/nextjs/server', () => ({
-  clerkMiddleware: vi.fn((handler) => handler),
-  createRouteMatcher: vi.fn((patterns: string[]) => {
-    return (request: { nextUrl: { pathname: string } }) => {
-      return patterns.some((pattern) => {
-        const regexStr = '^' + pattern.replace('(.*)', '.*') + '$';
-        return new RegExp(regexStr).test(request.nextUrl.pathname);
-      });
-    };
-  }),
-}));
+const PUBLIC_ROUTES = ['/', '/sign-in', '/sign-up', '/api/auth/callback', '/api/webhooks/test'];
+const PROTECTED_ROUTES = ['/chat', '/research', '/documents', '/settings', '/knowledge', '/workflows', '/marketing'];
 
-function makeRequest(pathname: string) {
-  return { nextUrl: { pathname } } as { nextUrl: { pathname: string } };
+function isPublicRoute(pathname: string): boolean {
+  return pathname === '/' ||
+    pathname.startsWith('/sign-in') ||
+    pathname.startsWith('/sign-up') ||
+    pathname.startsWith('/api/auth') ||
+    pathname.startsWith('/api/webhooks');
 }
 
 describe('Middleware route matching', () => {
-  const isPublicRoute = createRouteMatcher([
-    '/',
-    '/sign-in(.*)',
-    '/sign-up(.*)',
-    '/api/webhooks(.*)',
-  ]);
-
   it('should mark root as public', () => {
-    expect(isPublicRoute(makeRequest('/'))).toBe(true);
+    expect(isPublicRoute('/')).toBe(true);
   });
 
   it('should mark sign-in as public', () => {
-    expect(isPublicRoute(makeRequest('/sign-in'))).toBe(true);
-    expect(isPublicRoute(makeRequest('/sign-in/sso-callback'))).toBe(true);
+    expect(isPublicRoute('/sign-in')).toBe(true);
+    expect(isPublicRoute('/sign-in/callback')).toBe(true);
   });
 
   it('should mark sign-up as public', () => {
-    expect(isPublicRoute(makeRequest('/sign-up'))).toBe(true);
+    expect(isPublicRoute('/sign-up')).toBe(true);
+  });
+
+  it('should mark auth API as public', () => {
+    expect(isPublicRoute('/api/auth/callback/github')).toBe(true);
   });
 
   it('should mark webhooks as public', () => {
-    expect(isPublicRoute(makeRequest('/api/webhooks/clerk'))).toBe(true);
+    expect(isPublicRoute('/api/webhooks/clerk')).toBe(true);
   });
 
   it('should mark workspace routes as protected', () => {
-    expect(isPublicRoute(makeRequest('/chat'))).toBe(false);
-    expect(isPublicRoute(makeRequest('/research'))).toBe(false);
-    expect(isPublicRoute(makeRequest('/documents'))).toBe(false);
-    expect(isPublicRoute(makeRequest('/settings'))).toBe(false);
+    for (const route of PROTECTED_ROUTES) {
+      expect(isPublicRoute(route)).toBe(false);
+    }
   });
 });

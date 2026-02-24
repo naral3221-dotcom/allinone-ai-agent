@@ -84,7 +84,7 @@ describe('Chat API POST handler - RAG integration', () => {
     vi.clearAllMocks();
     mockGetAuthenticatedUser.mockResolvedValue({ id: 'user-1', email: 'test@test.com' });
     mockStreamText.mockReturnValue({
-      toDataStreamResponse: () => new Response('stream', { status: 200 }),
+      toTextStreamResponse: () => new Response('stream', { status: 200 }),
     });
   });
 

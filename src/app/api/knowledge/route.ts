@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   return jsonResponse({ knowledgeBase: kb });
 }
 
-export async function GET() {
+export async function GET(_request: Request) {
   const user = await getAuthenticatedUser();
   if (!user) {
     return jsonResponse({ error: 'Unauthorized' }, 401);

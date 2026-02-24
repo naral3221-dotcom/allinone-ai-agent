@@ -38,16 +38,16 @@ describe('ConversationService', () => {
   });
 
   describe('ensureUser', () => {
-    it('should upsert user by clerkId', async () => {
-      const user = { id: 'user-1', clerkId: 'clerk-123', email: 'test@test.com' };
+    it('should upsert user by email', async () => {
+      const user = { id: 'user-1', email: 'test@test.com' };
       mockPrisma.user.upsert.mockResolvedValue(user);
 
-      const result = await service.ensureUser('clerk-123', 'test@test.com', 'Test');
+      const result = await service.ensureUser('test@test.com', 'Test');
       expect(result).toEqual(user);
       expect(mockPrisma.user.upsert).toHaveBeenCalledWith({
-        where: { clerkId: 'clerk-123' },
-        update: { email: 'test@test.com', name: 'Test' },
-        create: { clerkId: 'clerk-123', email: 'test@test.com', name: 'Test' },
+        where: { email: 'test@test.com' },
+        update: { name: 'Test' },
+        create: { email: 'test@test.com', name: 'Test' },
       });
     });
   });

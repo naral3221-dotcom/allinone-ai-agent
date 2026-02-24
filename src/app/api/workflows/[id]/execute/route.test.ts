@@ -45,7 +45,7 @@ function makePostRequest(id: string): Request {
   });
 }
 
-const MOCK_USER = { id: 'user-1', clerkId: 'clerk-abc', email: 'test@example.com' };
+const MOCK_USER = { id: 'user-1', email: 'test@example.com' };
 
 // ---------------------------------------------------------------------------
 // Tests
@@ -128,6 +128,14 @@ describe('POST /api/workflows/[id]/execute', () => {
     expect(response.status).toBe(200);
     expect(data.result).toEqual(executionResult);
     expect(mockWorkflowService.get).toHaveBeenCalledWith('wf-1');
-    expect(mockWorkflowEngine.execute).toHaveBeenCalledWith(workflow);
+    expect(mockWorkflowEngine.execute).toHaveBeenCalledWith({
+      steps: workflow.steps.map((s) => ({
+        id: s.id,
+        order: s.order,
+        agentType: s.agentType,
+        prompt: s.prompt,
+        config: undefined,
+      })),
+    });
   });
 });
