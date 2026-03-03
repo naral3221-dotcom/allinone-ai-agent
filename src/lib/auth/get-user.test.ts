@@ -36,7 +36,22 @@ describe('getAuthenticatedUser', () => {
     expect(result).toBeNull();
   });
 
-  it('should return user when authenticated', async () => {
+  it('should return dev user when DATABASE_URL is not set', async () => {
+    vi.stubEnv('DATABASE_URL', '');
+    mockAuth.mockResolvedValue({ user: { id: 'user-1', email: 'test@test.com' } });
+
+    const result = await getAuthenticatedUser();
+    expect(result).toEqual(expect.objectContaining({
+      id: 'dev-user',
+      email: 'dev@localhost',
+      name: 'Dev User',
+    }));
+    expect(mockFindUnique).not.toHaveBeenCalled();
+    vi.unstubAllEnvs();
+  });
+
+  it('should return user from database when DATABASE_URL is set', async () => {
+    vi.stubEnv('DATABASE_URL', 'postgresql://test:test@localhost:5432/test');
     mockAuth.mockResolvedValue({ user: { id: 'user-1', email: 'test@test.com' } });
     mockFindUnique.mockResolvedValue({
       id: 'user-1',
@@ -53,5 +68,6 @@ describe('getAuthenticatedUser', () => {
     expect(mockFindUnique).toHaveBeenCalledWith({
       where: { id: 'user-1' },
     });
+    vi.unstubAllEnvs();
   });
 });
