@@ -46,7 +46,7 @@ export function SettingsForm({ settings, onSave }: SettingsFormProps) {
     setIsSaving(true);
     setSaveMessage(null);
     const success = await onSave({ defaultModel, theme, apiKeys });
-    setSaveMessage(success ? 'Settings saved' : 'Failed to save');
+    setSaveMessage(success ? '설정이 저장되었습니다' : '저장에 실패했습니다');
     setIsSaving(false);
     setTimeout(() => setSaveMessage(null), 3000);
   };
@@ -56,7 +56,7 @@ export function SettingsForm({ settings, onSave }: SettingsFormProps) {
       {/* Default Model */}
       <section className="space-y-3">
         <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          Default Model
+          기본 모델
         </h3>
         <ModelSelect value={defaultModel} onChange={setDefaultModel} />
       </section>
@@ -64,7 +64,7 @@ export function SettingsForm({ settings, onSave }: SettingsFormProps) {
       {/* Theme */}
       <section className="space-y-3">
         <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          Theme
+          테마
         </h3>
         <div className="flex gap-2" data-testid="theme-selector">
           {THEMES.map((t) => (
@@ -84,7 +84,7 @@ export function SettingsForm({ settings, onSave }: SettingsFormProps) {
       {/* API Keys */}
       <section className="space-y-3">
         <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          API Keys
+          API 키
         </h3>
         <div className="space-y-3">
           {API_KEY_NAMES.map((keyName) => (
@@ -107,14 +107,14 @@ export function SettingsForm({ settings, onSave }: SettingsFormProps) {
           disabled={isSaving}
           data-testid="save-button"
         >
-          {isSaving ? 'Saving...' : 'Save Settings'}
+          {isSaving ? '저장 중...' : '설정 저장'}
         </Button>
         {saveMessage && (
           <span
             data-testid="save-message"
             className={cn(
               'text-sm',
-              saveMessage === 'Settings saved'
+              saveMessage === '설정이 저장되었습니다'
                 ? 'text-green-600'
                 : 'text-red-600'
             )}

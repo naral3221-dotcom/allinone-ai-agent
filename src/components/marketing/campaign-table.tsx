@@ -38,7 +38,7 @@ export function CampaignTable({ campaigns }: CampaignTableProps) {
         data-testid="campaign-table"
         className="flex h-40 items-center justify-center rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
       >
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">No campaigns found</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">캠페인이 없습니다</p>
       </div>
     );
   }
@@ -51,11 +51,11 @@ export function CampaignTable({ campaigns }: CampaignTableProps) {
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
-            <th className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-300">Name</th>
-            <th className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-300">Status</th>
-            <th className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-300">Platform</th>
-            <th className="px-4 py-3 text-right font-medium text-zinc-600 dark:text-zinc-300">Budget</th>
-            <th className="px-4 py-3 text-right font-medium text-zinc-600 dark:text-zinc-300">Spent</th>
+            <th className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-300">이름</th>
+            <th className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-300">상태</th>
+            <th className="px-4 py-3 text-left font-medium text-zinc-600 dark:text-zinc-300">플랫폼</th>
+            <th className="px-4 py-3 text-right font-medium text-zinc-600 dark:text-zinc-300">예산</th>
+            <th className="px-4 py-3 text-right font-medium text-zinc-600 dark:text-zinc-300">지출</th>
             <th className="px-4 py-3 text-right font-medium text-zinc-600 dark:text-zinc-300">ROI</th>
           </tr>
         </thead>

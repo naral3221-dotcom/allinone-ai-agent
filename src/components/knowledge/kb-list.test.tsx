@@ -26,7 +26,7 @@ describe('KbList', () => {
   it('shows empty state when no KBs', () => {
     render(<KbList {...defaultProps} knowledgeBases={[]} />);
     expect(screen.getByTestId('kb-empty')).toBeDefined();
-    expect(screen.getByText('No knowledge bases yet. Create one to get started.')).toBeDefined();
+    expect(screen.getByText('아직 지식 베이스가 없습니다. 시작하려면 하나를 만드세요.')).toBeDefined();
   });
 
   it('calls onCreate when button clicked', () => {

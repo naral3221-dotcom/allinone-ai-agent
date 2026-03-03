@@ -24,19 +24,19 @@ export function KbCreateDialog({ onSubmit, onCancel }: KbCreateDialogProps) {
       data-testid="kb-create-dialog"
       className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900"
     >
-      <h3 className="mb-3 text-sm font-medium">Create Knowledge Base</h3>
+      <h3 className="mb-3 text-sm font-medium">지식 베이스 만들기</h3>
       <input
         data-testid="kb-name-input"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Name"
+        placeholder="이름"
         className="mb-2 w-full h-9 rounded-md border border-zinc-200 px-3 text-sm dark:border-zinc-800 dark:bg-zinc-950"
       />
       <textarea
         data-testid="kb-desc-input"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description (optional)"
+        placeholder="설명 (선택사항)"
         className="mb-3 w-full h-20 rounded-md border border-zinc-200 px-3 py-2 text-sm dark:border-zinc-800 dark:bg-zinc-950"
       />
       <div className="flex gap-2">
@@ -45,10 +45,10 @@ export function KbCreateDialog({ onSubmit, onCancel }: KbCreateDialogProps) {
           disabled={!name.trim() || isSubmitting}
           data-testid="kb-create-submit"
         >
-          {isSubmitting ? 'Creating...' : 'Create'}
+          {isSubmitting ? '만드는 중...' : '만들기'}
         </Button>
         <Button variant="outline" onClick={onCancel}>
-          Cancel
+          취소
         </Button>
       </div>
     </div>

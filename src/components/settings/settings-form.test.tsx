@@ -24,9 +24,9 @@ describe('SettingsForm', () => {
   it('should render all sections (model, theme, API keys)', () => {
     render(<SettingsForm settings={defaultSettings()} onSave={onSave} />);
 
-    expect(screen.getByText('Default Model')).toBeDefined();
-    expect(screen.getByText('Theme')).toBeDefined();
-    expect(screen.getByText('API Keys')).toBeDefined();
+    expect(screen.getByText('기본 모델')).toBeDefined();
+    expect(screen.getByText('테마')).toBeDefined();
+    expect(screen.getByText('API 키')).toBeDefined();
   });
 
   it('should render current model selection', () => {
@@ -92,14 +92,14 @@ describe('SettingsForm', () => {
     fireEvent.click(saveBtn);
 
     // Button should show "Saving..." and be disabled
-    expect(screen.getByText('Saving...')).toBeDefined();
+    expect(screen.getByText('저장 중...')).toBeDefined();
     expect(saveBtn).toBeDisabled();
 
     // Resolve the save
     resolvePromise!(true);
 
     await waitFor(() => {
-      expect(screen.getByText('Save Settings')).toBeDefined();
+      expect(screen.getByText('설정 저장')).toBeDefined();
     });
   });
 
@@ -111,7 +111,7 @@ describe('SettingsForm', () => {
     await waitFor(() => {
       expect(screen.getByTestId('save-message')).toBeDefined();
       expect(screen.getByTestId('save-message').textContent).toBe(
-        'Settings saved'
+        '설정이 저장되었습니다'
       );
     });
   });
@@ -125,7 +125,7 @@ describe('SettingsForm', () => {
     await waitFor(() => {
       expect(screen.getByTestId('save-message')).toBeDefined();
       expect(screen.getByTestId('save-message').textContent).toBe(
-        'Failed to save'
+        '저장에 실패했습니다'
       );
     });
   });

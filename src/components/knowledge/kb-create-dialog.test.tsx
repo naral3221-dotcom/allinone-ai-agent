@@ -41,7 +41,7 @@ describe('KbCreateDialog', () => {
   it('cancel calls onCancel', () => {
     const onCancel = vi.fn();
     render(<KbCreateDialog {...defaultProps} onCancel={onCancel} />);
-    fireEvent.click(screen.getByText('Cancel'));
+    fireEvent.click(screen.getByText('취소'));
     expect(onCancel).toHaveBeenCalledOnce();
   });
 });

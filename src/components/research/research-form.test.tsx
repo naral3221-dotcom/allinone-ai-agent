@@ -12,7 +12,7 @@ describe('ResearchForm', () => {
     render(<ResearchForm {...defaultProps} />);
     expect(screen.getByTestId('research-query')).toBeDefined();
     expect(screen.getByTestId('research-submit')).toBeDefined();
-    expect(screen.getByText('Start Research')).toBeDefined();
+    expect(screen.getByText('조사 시작')).toBeDefined();
   });
 
   it('should disable submit button when textarea is empty', () => {
@@ -25,7 +25,7 @@ describe('ResearchForm', () => {
     render(<ResearchForm {...defaultProps} isRunning={true} />);
     const button = screen.getByTestId('research-submit');
     expect(button.hasAttribute('disabled')).toBe(true);
-    expect(screen.getByText('Researching...')).toBeDefined();
+    expect(screen.getByText('조사 중...')).toBeDefined();
   });
 
   it('should call onSubmit with trimmed query and clear input', async () => {

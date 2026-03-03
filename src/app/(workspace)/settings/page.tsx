@@ -12,7 +12,7 @@ export default function SettingsPage() {
         className="flex items-center justify-center h-full"
         data-testid="settings-loading"
       >
-        <span className="text-zinc-400">Loading settings...</span>
+        <span className="text-zinc-400">설정 불러오는 중...</span>
       </div>
     );
   }
@@ -23,7 +23,7 @@ export default function SettingsPage() {
         className="flex items-center justify-center h-full"
         data-testid="settings-error"
       >
-        <span className="text-red-500">Error: {error}</span>
+        <span className="text-red-500">오류: {error}</span>
       </div>
     );
   }
@@ -33,7 +33,7 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-2xl p-8">
       <h1 className="mb-8 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-        Settings
+        설정
       </h1>
       <SettingsForm
         settings={{

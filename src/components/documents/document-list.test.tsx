@@ -39,7 +39,7 @@ describe('DocumentList', () => {
   it('should show empty state when no documents', () => {
     render(<DocumentList {...defaultProps} documents={[]} />);
     expect(screen.getByTestId('doc-empty')).toBeDefined();
-    expect(screen.getByText('No documents yet.')).toBeDefined();
+    expect(screen.getByText('아직 문서가 없습니다.')).toBeDefined();
   });
 
   it('should call onCreate when New Document button is clicked', () => {

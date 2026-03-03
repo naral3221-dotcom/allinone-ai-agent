@@ -16,7 +16,7 @@ export default function DocumentsPage() {
         className="flex items-center justify-center h-full"
         data-testid="docs-loading"
       >
-        <span className="text-zinc-400">Loading...</span>
+        <span className="text-zinc-400">불러오는 중...</span>
       </div>
     );
   if (error)
@@ -25,7 +25,7 @@ export default function DocumentsPage() {
         className="flex items-center justify-center h-full"
         data-testid="docs-error"
       >
-        <span className="text-red-500">Error: {error}</span>
+        <span className="text-red-500">오류: {error}</span>
       </div>
     );
 
@@ -40,7 +40,7 @@ export default function DocumentsPage() {
   return (
     <div className="mx-auto max-w-4xl p-8">
       <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-        Documents
+        문서
       </h1>
       {showCreate && (
         <div className="mb-6">

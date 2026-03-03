@@ -16,7 +16,7 @@ export function StepTimeline({ steps }: StepTimelineProps) {
 
   return (
     <div data-testid="step-timeline" className="space-y-3">
-      <h3 className="text-xs font-medium text-zinc-400 uppercase">Execution Steps</h3>
+      <h3 className="text-xs font-medium text-zinc-400 uppercase">실행 단계</h3>
       <div className="space-y-2">
         {steps.map((step, i) => (
           <div

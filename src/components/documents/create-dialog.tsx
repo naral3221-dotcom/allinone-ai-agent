@@ -25,12 +25,12 @@ export function CreateDialog({ onSubmit, onCancel }: CreateDialogProps) {
       data-testid="create-doc-dialog"
       className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900"
     >
-      <h3 className="mb-3 text-sm font-medium">Create Document</h3>
+      <h3 className="mb-3 text-sm font-medium">문서 만들기</h3>
       <input
         data-testid="doc-title-create"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Document title"
+        placeholder="문서 제목"
         className="mb-2 w-full h-9 rounded-md border border-zinc-200 px-3 text-sm dark:border-zinc-800 dark:bg-zinc-950"
       />
       <select
@@ -39,9 +39,9 @@ export function CreateDialog({ onSubmit, onCancel }: CreateDialogProps) {
         onChange={(e) => setType(e.target.value)}
         className="mb-3 h-9 rounded-md border border-zinc-200 px-3 text-sm dark:border-zinc-800 dark:bg-zinc-950"
       >
-        <option value="document">Document</option>
-        <option value="note">Note</option>
-        <option value="report">Report</option>
+        <option value="document">문서</option>
+        <option value="note">메모</option>
+        <option value="report">보고서</option>
       </select>
       <div className="flex gap-2">
         <Button
@@ -49,10 +49,10 @@ export function CreateDialog({ onSubmit, onCancel }: CreateDialogProps) {
           disabled={!title.trim() || isSubmitting}
           data-testid="doc-create-submit"
         >
-          {isSubmitting ? 'Creating...' : 'Create'}
+          {isSubmitting ? '만드는 중...' : '만들기'}
         </Button>
         <Button variant="outline" onClick={onCancel}>
-          Cancel
+          취소
         </Button>
       </div>
     </div>

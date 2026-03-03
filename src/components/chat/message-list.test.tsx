@@ -6,8 +6,8 @@ import type { UIMessage } from 'ai';
 describe('MessageList', () => {
   it('should show empty state when no messages', () => {
     render(<MessageList messages={[]} />);
-    expect(screen.getByText('AI Workspace')).toBeDefined();
-    expect(screen.getByText('Start a conversation with your AI assistant.')).toBeDefined();
+    expect(screen.getByText('AI 워크스페이스')).toBeDefined();
+    expect(screen.getByText('AI 어시스턴트와 대화를 시작하세요.')).toBeDefined();
   });
 
   it('should render user and assistant messages', () => {
@@ -27,7 +27,7 @@ describe('MessageList', () => {
     ];
 
     render(<MessageList messages={messages} isLoading />);
-    expect(screen.getByText('Thinking...')).toBeDefined();
+    expect(screen.getByText('생각 중...')).toBeDefined();
   });
 
   it('should not show loading when not loading', () => {
@@ -36,6 +36,6 @@ describe('MessageList', () => {
     ];
 
     render(<MessageList messages={messages} isLoading={false} />);
-    expect(screen.queryByText('Thinking...')).toBeNull();
+    expect(screen.queryByText('생각 중...')).toBeNull();
   });
 });

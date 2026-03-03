@@ -29,15 +29,15 @@ export function DocumentList({
     <div data-testid="document-list">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-          Documents
+          문서
         </h2>
         <Button onClick={onCreate} data-testid="create-doc-button">
-          New Document
+          새 문서
         </Button>
       </div>
       {documents.length === 0 ? (
         <p data-testid="doc-empty" className="text-zinc-400 text-sm">
-          No documents yet.
+          아직 문서가 없습니다.
         </p>
       ) : (
         <div className="space-y-2">

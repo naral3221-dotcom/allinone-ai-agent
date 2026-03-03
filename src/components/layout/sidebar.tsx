@@ -11,12 +11,12 @@ import {
 } from '@/components/chat/conversation-list';
 
 const NAV_ITEMS = [
-  { href: '/chat', label: 'Chat', icon: '💬' },
-  { href: '/research', label: 'Research', icon: '🔍' },
-  { href: '/documents', label: 'Documents', icon: '📄' },
-  { href: '/knowledge', label: 'Knowledge', icon: '📚' },
-  { href: '/workflows', label: 'Workflows', icon: '⚡' },
-  { href: '/marketing', label: 'Marketing', icon: '📊' },
+  { href: '/chat', label: '채팅', icon: '💬' },
+  { href: '/research', label: '리서치', icon: '🔍' },
+  { href: '/documents', label: '문서', icon: '📄' },
+  { href: '/knowledge', label: '지식 베이스', icon: '📚' },
+  { href: '/workflows', label: '워크플로우', icon: '⚡' },
+  { href: '/marketing', label: '마케팅', icon: '📊' },
 ] as const;
 
 export function Sidebar() {
@@ -72,7 +72,7 @@ export function Sidebar() {
     <aside className="flex h-full w-60 flex-col border-r border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
       <div className="flex h-14 items-center border-b border-zinc-200 px-4 dark:border-zinc-800">
         <Link href="/chat" className="text-lg font-semibold tracking-tight">
-          AI Workspace
+          AI 워크스페이스
         </Link>
       </div>
 
@@ -98,9 +98,9 @@ export function Sidebar() {
         {isChatRoute && (
           <div className="border-t border-zinc-200 p-2 dark:border-zinc-800">
             <div className="mb-2 flex items-center justify-between px-2">
-              <span className="text-xs font-medium text-zinc-400">History</span>
+              <span className="text-xs font-medium text-zinc-400">대화 기록</span>
               <Button variant="ghost" size="sm" onClick={handleNewChat}>
-                + New
+                + 새 대화
               </Button>
             </div>
             <ConversationList
@@ -117,7 +117,7 @@ export function Sidebar() {
           className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-900"
         >
           <span>⚙️</span>
-          Settings
+          설정
         </Link>
       </div>
     </aside>

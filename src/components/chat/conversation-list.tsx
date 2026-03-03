@@ -39,7 +39,7 @@ export function ConversationList({
               href={`/chat/${conv.id}`}
               className="flex-1 truncate px-3 py-2 text-zinc-700 dark:text-zinc-300"
             >
-              {conv.title || 'Untitled'}
+              {conv.title || '제목 없음'}
             </Link>
             {onDelete && (
               <button
@@ -48,7 +48,7 @@ export function ConversationList({
                   onDelete(conv.id);
                 }}
                 className="mr-2 hidden rounded p-1 text-zinc-400 hover:bg-zinc-300 hover:text-zinc-600 group-hover:block dark:hover:bg-zinc-700 dark:hover:text-zinc-200"
-                aria-label={`Delete ${conv.title || 'conversation'}`}
+                aria-label={`${conv.title || '대화'} 삭제`}
               >
                 x
               </button>
@@ -57,7 +57,7 @@ export function ConversationList({
         );
       })}
       {conversations.length === 0 && (
-        <p className="px-3 py-2 text-xs text-zinc-400">No conversations yet</p>
+        <p className="px-3 py-2 text-xs text-zinc-400">대화 기록이 없습니다</p>
       )}
     </div>
   );

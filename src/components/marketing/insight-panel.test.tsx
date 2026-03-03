@@ -18,7 +18,7 @@ describe('InsightPanel', () => {
     render(<InsightPanel onGenerate={onGenerate} />);
     expect(screen.getByTestId('insight-panel')).toBeDefined();
     expect(screen.getByTestId('generate-insight-button')).toBeDefined();
-    expect(screen.getByText('Generate AI Insights')).toBeDefined();
+    expect(screen.getByText('AI 인사이트 생성')).toBeDefined();
   });
 
   it('should show generating state while loading', async () => {
@@ -34,13 +34,13 @@ describe('InsightPanel', () => {
     fireEvent.click(button);
 
     await waitFor(() => {
-      expect(screen.getByText('Generating...')).toBeDefined();
+      expect(screen.getByText('생성 중...')).toBeDefined();
     });
     expect(button.hasAttribute('disabled')).toBe(true);
 
     resolvePromise!(mockInsight);
     await waitFor(() => {
-      expect(screen.getByText('Generate AI Insights')).toBeDefined();
+      expect(screen.getByText('AI 인사이트 생성')).toBeDefined();
     });
   });
 

@@ -74,7 +74,7 @@ export default function ResearchPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full" data-testid="research-loading">
-        <span className="text-zinc-400">Loading...</span>
+        <span className="text-zinc-400">불러오는 중...</span>
       </div>
     );
   }
@@ -98,7 +98,7 @@ export default function ResearchPage() {
       {/* Main content */}
       <div className="flex-1 overflow-y-auto p-8">
         <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-          Deep Research
+          딥 리서치
         </h1>
         <ResearchForm onSubmit={handleSubmit} isRunning={isRunning} />
 

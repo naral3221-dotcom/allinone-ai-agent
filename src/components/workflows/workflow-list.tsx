@@ -23,15 +23,15 @@ export function WorkflowList({ workflows, onSelect, onDelete, onCreate }: Workfl
     <div data-testid="workflow-list">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-          Workflows
+          워크플로우
         </h2>
         <Button onClick={onCreate} data-testid="create-wf-button">
-          Create New
+          새로 만들기
         </Button>
       </div>
       {workflows.length === 0 ? (
         <p data-testid="wf-empty" className="text-sm text-zinc-400">
-          No workflows yet. Create one to get started.
+          아직 워크플로우가 없습니다. 시작하려면 하나를 만드세요.
         </p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

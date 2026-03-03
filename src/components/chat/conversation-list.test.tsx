@@ -15,12 +15,12 @@ describe('ConversationList', () => {
   it('should render conversation titles', () => {
     render(<ConversationList conversations={conversations} />);
     expect(screen.getByText('First Chat')).toBeDefined();
-    expect(screen.getByText('Untitled')).toBeDefined();
+    expect(screen.getByText('제목 없음')).toBeDefined();
   });
 
   it('should show empty state', () => {
     render(<ConversationList conversations={[]} />);
-    expect(screen.getByText('No conversations yet')).toBeDefined();
+    expect(screen.getByText('대화 기록이 없습니다')).toBeDefined();
   });
 
   it('should have links to conversations', () => {
@@ -34,7 +34,7 @@ describe('ConversationList', () => {
     render(
       <ConversationList conversations={conversations} onDelete={onDelete} />
     );
-    const deleteButtons = screen.getAllByLabelText(/Delete/);
+    const deleteButtons = screen.getAllByLabelText(/삭제/);
     fireEvent.click(deleteButtons[0]);
     expect(onDelete).toHaveBeenCalledWith('conv-1');
   });

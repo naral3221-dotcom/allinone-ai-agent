@@ -41,7 +41,7 @@ describe('CreateDialog', () => {
   it('should call onCancel when cancel button is clicked', () => {
     const onCancel = vi.fn();
     render(<CreateDialog {...defaultProps} onCancel={onCancel} />);
-    fireEvent.click(screen.getByText('Cancel'));
+    fireEvent.click(screen.getByText('취소'));
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 });

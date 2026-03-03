@@ -11,7 +11,7 @@ export default function KnowledgePage() {
   if (isLoading) {
     return (
       <div className="flex h-full items-center justify-center" data-testid="kb-loading">
-        <span className="text-zinc-400">Loading...</span>
+        <span className="text-zinc-400">불러오는 중...</span>
       </div>
     );
   }
@@ -19,7 +19,7 @@ export default function KnowledgePage() {
   if (error) {
     return (
       <div className="flex h-full items-center justify-center" data-testid="kb-error">
-        <span className="text-red-500">Error: {error}</span>
+        <span className="text-red-500">오류: {error}</span>
       </div>
     );
   }
@@ -38,7 +38,7 @@ export default function KnowledgePage() {
   return (
     <div className="mx-auto max-w-4xl p-8">
       <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-        Knowledge Base
+        지식 베이스
       </h1>
       {showCreate && (
         <div className="mb-6">

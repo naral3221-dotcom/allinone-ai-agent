@@ -14,7 +14,7 @@ describe('GlobalError', () => {
     const error = new Error('');
     const reset = vi.fn();
     render(<GlobalError error={error} reset={reset} />);
-    expect(screen.getByTestId('error-message')).toHaveTextContent('An unexpected error occurred');
+    expect(screen.getByTestId('error-message')).toHaveTextContent('예상치 못한 오류가 발생했습니다');
   });
 
   it('reset button calls reset function', () => {

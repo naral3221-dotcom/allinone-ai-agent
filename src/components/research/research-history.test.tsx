@@ -21,7 +21,7 @@ describe('ResearchHistory', () => {
   it('should show empty state when no items', () => {
     render(<ResearchHistory items={[]} onSelect={vi.fn()} />);
     expect(screen.getByTestId('history-empty')).toBeDefined();
-    expect(screen.getByText('No research history yet.')).toBeDefined();
+    expect(screen.getByText('조사 이력이 없습니다.')).toBeDefined();
   });
 
   it('should call onSelect when an item is clicked', () => {

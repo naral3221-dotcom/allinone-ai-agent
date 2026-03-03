@@ -17,14 +17,14 @@ export function ResearchHistory({ items, onSelect, selectedId }: ResearchHistory
   if (items.length === 0) {
     return (
       <p data-testid="history-empty" className="text-sm text-zinc-400">
-        No research history yet.
+        조사 이력이 없습니다.
       </p>
     );
   }
 
   return (
     <div data-testid="research-history" className="space-y-1">
-      <h3 className="mb-2 text-xs font-medium text-zinc-400 uppercase">History</h3>
+      <h3 className="mb-2 text-xs font-medium text-zinc-400 uppercase">이력</h3>
       {items.map(item => (
         <button
           key={item.id}

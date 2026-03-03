@@ -116,14 +116,14 @@ export default function MarketingPage() {
   if (isLoading) {
     return (
       <div data-testid="marketing-loading" className="flex h-full items-center justify-center">
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">Loading marketing data...</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">마케팅 데이터 불러오는 중...</p>
       </div>
     );
   }
 
   return (
     <div className="space-y-6 p-6">
-      <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Marketing Dashboard</h1>
+      <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">마케팅 대시보드</h1>
 
       {summary && <SummaryCards data={summary} />}
 

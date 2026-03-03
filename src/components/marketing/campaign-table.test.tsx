@@ -12,11 +12,11 @@ describe('CampaignTable', () => {
   it('should render table headers', () => {
     render(<CampaignTable campaigns={sampleCampaigns} />);
     expect(screen.getByTestId('campaign-table')).toBeDefined();
-    expect(screen.getByText('Name')).toBeDefined();
-    expect(screen.getByText('Status')).toBeDefined();
-    expect(screen.getByText('Platform')).toBeDefined();
-    expect(screen.getByText('Budget')).toBeDefined();
-    expect(screen.getByText('Spent')).toBeDefined();
+    expect(screen.getByText('이름')).toBeDefined();
+    expect(screen.getByText('상태')).toBeDefined();
+    expect(screen.getByText('플랫폼')).toBeDefined();
+    expect(screen.getByText('예산')).toBeDefined();
+    expect(screen.getByText('지출')).toBeDefined();
     expect(screen.getByText('ROI')).toBeDefined();
   });
 
@@ -48,6 +48,6 @@ describe('CampaignTable', () => {
   it('should show empty state when no campaigns', () => {
     render(<CampaignTable campaigns={[]} />);
     expect(screen.getByTestId('campaign-table')).toBeDefined();
-    expect(screen.getByText('No campaigns found')).toBeDefined();
+    expect(screen.getByText('캠페인이 없습니다')).toBeDefined();
   });
 });

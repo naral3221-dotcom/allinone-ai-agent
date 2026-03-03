@@ -27,12 +27,12 @@ function formatValue(value: number, format: string): string {
 
 export function SummaryCards({ data }: SummaryCardsProps) {
   const cards = [
-    { label: 'Total Campaigns', value: data.totalCampaigns, format: 'number' },
-    { label: 'Active', value: data.activeCampaigns, format: 'number' },
-    { label: 'Budget', value: data.totalBudget, format: 'currency' },
-    { label: 'Spent', value: data.totalSpent, format: 'currency' },
-    { label: 'Avg CTR', value: data.avgCtr * 100, format: 'percent' },
-    { label: 'Avg ROAS', value: data.avgRoas, format: 'ratio' },
+    { label: '총 캠페인', value: data.totalCampaigns, format: 'number' },
+    { label: '활성', value: data.activeCampaigns, format: 'number' },
+    { label: '예산', value: data.totalBudget, format: 'currency' },
+    { label: '지출', value: data.totalSpent, format: 'currency' },
+    { label: '평균 CTR', value: data.avgCtr * 100, format: 'percent' },
+    { label: '평균 ROAS', value: data.avgRoas, format: 'ratio' },
   ];
 
   return (

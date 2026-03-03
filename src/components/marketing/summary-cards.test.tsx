@@ -17,42 +17,42 @@ describe('SummaryCards', () => {
     const container = screen.getByTestId('summary-cards');
     expect(container).toBeDefined();
 
-    expect(screen.getByTestId('card-total-campaigns')).toBeDefined();
-    expect(screen.getByTestId('card-active')).toBeDefined();
-    expect(screen.getByTestId('card-budget')).toBeDefined();
-    expect(screen.getByTestId('card-spent')).toBeDefined();
-    expect(screen.getByTestId('card-avg-ctr')).toBeDefined();
-    expect(screen.getByTestId('card-avg-roas')).toBeDefined();
+    expect(screen.getByTestId('card-총-캠페인')).toBeDefined();
+    expect(screen.getByTestId('card-활성')).toBeDefined();
+    expect(screen.getByTestId('card-예산')).toBeDefined();
+    expect(screen.getByTestId('card-지출')).toBeDefined();
+    expect(screen.getByTestId('card-평균-ctr')).toBeDefined();
+    expect(screen.getByTestId('card-평균-roas')).toBeDefined();
   });
 
   it('should format currency values with dollar sign', () => {
     render(<SummaryCards data={defaultData} />);
-    const budgetCard = screen.getByTestId('card-budget');
+    const budgetCard = screen.getByTestId('card-예산');
     expect(budgetCard.textContent).toContain('$50,000');
 
-    const spentCard = screen.getByTestId('card-spent');
+    const spentCard = screen.getByTestId('card-지출');
     expect(spentCard.textContent).toContain('$32,500');
   });
 
   it('should format percentage values with percent sign', () => {
     render(<SummaryCards data={defaultData} />);
-    const ctrCard = screen.getByTestId('card-avg-ctr');
+    const ctrCard = screen.getByTestId('card-평균-ctr');
     expect(ctrCard.textContent).toContain('3.45%');
   });
 
   it('should format ratio values with x suffix', () => {
     render(<SummaryCards data={defaultData} />);
-    const roasCard = screen.getByTestId('card-avg-roas');
+    const roasCard = screen.getByTestId('card-평균-roas');
     expect(roasCard.textContent).toContain('3.2x');
   });
 
   it('should render card labels correctly', () => {
     render(<SummaryCards data={defaultData} />);
-    expect(screen.getByText('Total Campaigns')).toBeDefined();
-    expect(screen.getByText('Active')).toBeDefined();
-    expect(screen.getByText('Budget')).toBeDefined();
-    expect(screen.getByText('Spent')).toBeDefined();
-    expect(screen.getByText('Avg CTR')).toBeDefined();
-    expect(screen.getByText('Avg ROAS')).toBeDefined();
+    expect(screen.getByText('총 캠페인')).toBeDefined();
+    expect(screen.getByText('활성')).toBeDefined();
+    expect(screen.getByText('예산')).toBeDefined();
+    expect(screen.getByText('지출')).toBeDefined();
+    expect(screen.getByText('평균 CTR')).toBeDefined();
+    expect(screen.getByText('평균 ROAS')).toBeDefined();
   });
 });

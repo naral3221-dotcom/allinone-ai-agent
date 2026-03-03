@@ -42,17 +42,17 @@ export function ChatInput({
               }
             }
           }}
-          placeholder="Type a message..."
+          placeholder="메시지를 입력하세요..."
           rows={1}
           className="flex-1 resize-none rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:placeholder:text-zinc-600"
         />
         {isLoading ? (
           <Button type="button" variant="outline" size="sm" onClick={onStop}>
-            Stop
+            중지
           </Button>
         ) : (
           <Button type="submit" size="sm" disabled={!input.trim()}>
-            Send
+            전송
           </Button>
         )}
       </div>

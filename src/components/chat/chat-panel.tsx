@@ -44,7 +44,7 @@ export function ChatPanel({ conversationId }: ChatPanelProps) {
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between border-b border-zinc-200 px-4 py-2 dark:border-zinc-800">
         <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-          New Chat
+          새 대화
         </span>
         <ModelSelector selectedModel={modelId} onModelChange={setModelId} />
       </div>

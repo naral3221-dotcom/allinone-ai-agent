@@ -21,7 +21,7 @@ export function Header() {
               onClick={() => signOut({ callbackUrl: '/' })}
               data-testid="sign-out-button"
             >
-              Sign Out
+              로그아웃
             </Button>
           </>
         )}

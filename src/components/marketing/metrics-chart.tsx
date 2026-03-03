@@ -29,7 +29,7 @@ export function MetricsChart({ data }: MetricsChartProps) {
         data-testid="metrics-chart"
         className="flex h-[300px] items-center justify-center rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
       >
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">No metrics data available</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">사용 가능한 메트릭 데이터가 없습니다</p>
       </div>
     );
   }
@@ -40,7 +40,7 @@ export function MetricsChart({ data }: MetricsChartProps) {
       className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950"
     >
       <h3 className="mb-4 text-sm font-medium text-zinc-900 dark:text-zinc-100">
-        Performance Over Time
+        시간별 성과
       </h3>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
@@ -53,7 +53,7 @@ export function MetricsChart({ data }: MetricsChartProps) {
             type="monotone"
             dataKey="impressions"
             stroke="#3b82f6"
-            name="Impressions"
+            name="노출"
             strokeWidth={2}
             dot={false}
           />
@@ -61,7 +61,7 @@ export function MetricsChart({ data }: MetricsChartProps) {
             type="monotone"
             dataKey="clicks"
             stroke="#22c55e"
-            name="Clicks"
+            name="클릭"
             strokeWidth={2}
             dot={false}
           />
@@ -69,7 +69,7 @@ export function MetricsChart({ data }: MetricsChartProps) {
             type="monotone"
             dataKey="conversions"
             stroke="#f97316"
-            name="Conversions"
+            name="전환"
             strokeWidth={2}
             dot={false}
           />

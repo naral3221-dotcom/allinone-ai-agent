@@ -12,31 +12,31 @@ describe('ChatInput', () => {
 
   it('should render textarea and send button', () => {
     render(<ChatInput {...defaultProps} />);
-    expect(screen.getByPlaceholderText('Type a message...')).toBeDefined();
-    expect(screen.getByText('Send')).toBeDefined();
+    expect(screen.getByPlaceholderText('메시지를 입력하세요...')).toBeDefined();
+    expect(screen.getByText('전송')).toBeDefined();
   });
 
   it('should disable send button when input is empty', () => {
     render(<ChatInput {...defaultProps} />);
-    const button = screen.getByText('Send');
+    const button = screen.getByText('전송');
     expect(button.hasAttribute('disabled')).toBe(true);
   });
 
   it('should enable send button when input has text', () => {
     render(<ChatInput {...defaultProps} input="hello" />);
-    const button = screen.getByText('Send');
+    const button = screen.getByText('전송');
     expect(button.hasAttribute('disabled')).toBe(false);
   });
 
   it('should show stop button when loading', () => {
     render(<ChatInput {...defaultProps} isLoading onStop={vi.fn()} />);
-    expect(screen.getByText('Stop')).toBeDefined();
+    expect(screen.getByText('중지')).toBeDefined();
   });
 
   it('should call onInputChange when typing', () => {
     const onInputChange = vi.fn();
     render(<ChatInput {...defaultProps} onInputChange={onInputChange} />);
-    const textarea = screen.getByPlaceholderText('Type a message...');
+    const textarea = screen.getByPlaceholderText('메시지를 입력하세요...');
     fireEvent.change(textarea, { target: { value: 'test' } });
     expect(onInputChange).toHaveBeenCalledWith('test');
   });

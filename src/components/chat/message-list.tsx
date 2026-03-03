@@ -22,10 +22,10 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
       <div className="flex flex-1 items-center justify-center">
         <div className="text-center">
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-            AI Workspace
+            AI 워크스페이스
           </h2>
           <p className="mt-2 text-sm text-zinc-500">
-            Start a conversation with your AI assistant.
+            AI 어시스턴트와 대화를 시작하세요.
           </p>
         </div>
       </div>
@@ -57,7 +57,7 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
       {isLoading && (
         <div className="flex justify-start">
           <div className="rounded-lg bg-zinc-100 px-4 py-2 dark:bg-zinc-800">
-            <span className="animate-pulse text-sm text-zinc-500">Thinking...</span>
+            <span className="animate-pulse text-sm text-zinc-500">생각 중...</span>
           </div>
         </div>
       )}

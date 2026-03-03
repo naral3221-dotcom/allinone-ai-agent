@@ -35,7 +35,7 @@ describe('MetricsChart', () => {
     render(<MetricsChart data={[]} />);
     const container = screen.getByTestId('metrics-chart');
     expect(container).toBeDefined();
-    expect(screen.getByText('No metrics data available')).toBeDefined();
+    expect(screen.getByText('사용 가능한 메트릭 데이터가 없습니다')).toBeDefined();
   });
 
   it('should render chart components when data is present', () => {

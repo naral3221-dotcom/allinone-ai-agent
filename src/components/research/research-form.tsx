@@ -22,20 +22,20 @@ export function ResearchForm({ onSubmit, isRunning }: ResearchFormProps) {
         data-testid="research-query"
         value={query}
         onChange={e => setQuery(e.target.value)}
-        placeholder="What would you like to research? Enter a detailed question or topic..."
+        placeholder="무엇을 조사하고 싶으신가요? 자세한 질문이나 주제를 입력하세요..."
         className="w-full h-24 rounded-md border border-zinc-200 p-3 text-sm resize-none dark:border-zinc-800 dark:bg-zinc-950"
         onKeyDown={e => {
           if (e.key === 'Enter' && e.ctrlKey) handleSubmit();
         }}
       />
       <div className="flex items-center justify-between">
-        <span className="text-xs text-zinc-400">Ctrl+Enter to submit</span>
+        <span className="text-xs text-zinc-400">Ctrl+Enter로 제출</span>
         <Button
           onClick={handleSubmit}
           disabled={!query.trim() || isRunning}
           data-testid="research-submit"
         >
-          {isRunning ? 'Researching...' : 'Start Research'}
+          {isRunning ? '조사 중...' : '조사 시작'}
         </Button>
       </div>
     </div>

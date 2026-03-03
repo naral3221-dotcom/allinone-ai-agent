@@ -68,7 +68,7 @@ export function WorkflowCreateForm({ onSubmit, onCancel }: WorkflowCreateFormPro
           htmlFor="wf-name"
           className="mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
         >
-          Name
+          이름
         </label>
         <input
           id="wf-name"
@@ -76,7 +76,7 @@ export function WorkflowCreateForm({ onSubmit, onCancel }: WorkflowCreateFormPro
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Workflow name"
+          placeholder="워크플로우 이름"
           required
           className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
         />
@@ -87,14 +87,14 @@ export function WorkflowCreateForm({ onSubmit, onCancel }: WorkflowCreateFormPro
           htmlFor="wf-desc"
           className="mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
         >
-          Description
+          설명
         </label>
         <textarea
           id="wf-desc"
           data-testid="wf-desc-input"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Optional description"
+          placeholder="선택적 설명"
           rows={2}
           className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
         />
@@ -103,7 +103,7 @@ export function WorkflowCreateForm({ onSubmit, onCancel }: WorkflowCreateFormPro
       <div>
         <div className="mb-2 flex items-center justify-between">
           <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Steps
+            단계
           </span>
           <Button
             type="button"
@@ -112,7 +112,7 @@ export function WorkflowCreateForm({ onSubmit, onCancel }: WorkflowCreateFormPro
             onClick={addStep}
             data-testid="add-step-button"
           >
-            Add Step
+            단계 추가
           </Button>
         </div>
         <div className="space-y-3">
@@ -128,21 +128,21 @@ export function WorkflowCreateForm({ onSubmit, onCancel }: WorkflowCreateFormPro
         </div>
         {steps.length === 0 && (
           <p className="text-sm text-zinc-400">
-            Add at least one step to create a workflow.
+            워크플로우를 만들려면 최소 하나의 단계를 추가하세요.
           </p>
         )}
       </div>
 
       <div className="flex justify-end gap-2">
         <Button type="button" variant="outline" onClick={onCancel}>
-          Cancel
+          취소
         </Button>
         <Button
           type="submit"
           disabled={!isValid || isSubmitting}
           data-testid="wf-create-submit"
         >
-          {isSubmitting ? 'Creating...' : 'Create Workflow'}
+          {isSubmitting ? '만드는 중...' : '워크플로우 만들기'}
         </Button>
       </div>
     </form>

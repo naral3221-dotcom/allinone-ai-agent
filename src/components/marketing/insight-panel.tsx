@@ -35,14 +35,14 @@ export function InsightPanel({ onGenerate }: InsightPanelProps) {
       className="rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950"
     >
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">AI Insights</h3>
+        <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">AI 인사이트</h3>
         <Button
           data-testid="generate-insight-button"
           onClick={handleGenerate}
           disabled={isGenerating}
           size="sm"
         >
-          {isGenerating ? 'Generating...' : 'Generate AI Insights'}
+          {isGenerating ? '생성 중...' : 'AI 인사이트 생성'}
         </Button>
       </div>
 
@@ -65,7 +65,7 @@ export function InsightPanel({ onGenerate }: InsightPanelProps) {
           )}
 
           <p className="mt-4 text-xs text-zinc-400">
-            Generated at {new Date(insight.generatedAt).toLocaleString()}
+            생성일: {new Date(insight.generatedAt).toLocaleString('ko-KR')}
           </p>
         </div>
       )}

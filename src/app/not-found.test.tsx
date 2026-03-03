@@ -12,9 +12,9 @@ describe('NotFound', () => {
     expect(screen.getByText('404')).toBeInTheDocument();
   });
 
-  it('renders "Page Not Found" text', () => {
+  it('renders "페이지를 찾을 수 없습니다" text', () => {
     render(<NotFound />);
-    expect(screen.getByText('Page Not Found')).toBeInTheDocument();
+    expect(screen.getByText('페이지를 찾을 수 없습니다')).toBeInTheDocument();
   });
 
   it('renders link to workspace', () => {

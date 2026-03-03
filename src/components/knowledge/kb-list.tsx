@@ -21,15 +21,15 @@ export function KbList({ knowledgeBases, onSelect, onDelete, onCreate }: KbListP
     <div data-testid="kb-list">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-          Knowledge Bases
+          지식 베이스
         </h2>
         <Button onClick={onCreate} data-testid="create-kb-button">
-          Create New
+          새로 만들기
         </Button>
       </div>
       {knowledgeBases.length === 0 ? (
         <p data-testid="kb-empty" className="text-sm text-zinc-400">
-          No knowledge bases yet. Create one to get started.
+          아직 지식 베이스가 없습니다. 시작하려면 하나를 만드세요.
         </p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
